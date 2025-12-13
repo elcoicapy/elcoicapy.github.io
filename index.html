@@ -13,38 +13,51 @@ body {
   color: #5a3e4c;
 }
 
-nav {
-  background: #fff;
-  padding: 15px;
-  box-shadow: 0 5px 15px rgba(231,84,128,0.15);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 0;
-  padding: 0;
-  flex-wrap: wrap;
-}
-
-nav li {
+/* MENU BUTTON */
+.menu-btn {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  font-size: 26px;
   cursor: pointer;
-  font-weight: 600;
   color: #e75480;
+  z-index: 20;
 }
 
-nav li:hover {
-  color: #ff8fab;
+/* SIDE MENU */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -5px 0 20px rgba(231,84,128,0.2);
+  padding-top: 60px;
+  transition: 0.3s;
+  z-index: 15;
 }
 
+.side-menu.active {
+  right: 0;
+}
+
+.side-menu a {
+  display: block;
+  padding: 15px 25px;
+  text-decoration: none;
+  color: #e75480;
+  font-weight: 600;
+}
+
+.side-menu a:hover {
+  background: #ffe6ee;
+}
+
+/* CONTENT */
 .container {
   max-width: 900px;
-  margin: 40px auto;
+  margin: 100px auto 40px;
   background: #ffffff;
   padding: 35px;
   border-radius: 20px;
@@ -81,7 +94,10 @@ button {
   cursor: pointer;
   font-weight: 600;
 }
-button:hover { background: #ffb3c6; }
+
+button:hover {
+  background: #ffb3c6;
+}
 
 .puzzle {
   display: grid;
@@ -100,7 +116,6 @@ button:hover { background: #ffb3c6; }
   justify-content: center;
   font-size: 1.5em;
   cursor: pointer;
-  box-shadow: 0 5px 10px rgba(231,84,128,0.2);
 }
 
 .gallery {
@@ -127,34 +142,33 @@ footer {
 
 <body>
 
-<nav>
-  <ul>
-    <li onclick="show('home')">🌸 Trang chủ</li>
-    <li onclick="show('about')">📖 Giới thiệu</li>
-    <li onclick="show('blog')">📝 Nhật ký</li>
-    <li onclick="show('memory')">📸 Kỉ niệm</li>
-    <li onclick="show('game')">🎮 Trò chơi</li>
-    <li onclick="show('letter')">💌 Lời nhắn</li>
-  </ul>
-</nav>
+<!-- MENU ICON -->
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+<!-- SIDE MENU -->
+<div class="side-menu" id="menu">
+  <a onclick="openSection('about')">📖 Giới thiệu</a>
+  <a onclick="openSection('blog')">📝 Nhật ký</a>
+  <a onclick="openSection('memory')">📸 Kỉ niệm</a>
+  <a onclick="openSection('game')">🎮 Trò chơi</a>
+  <a onclick="openSection('letter')">💌 Lời nhắn</a>
+</div>
 
 <div class="container">
 
+<!-- HOME -->
 <section id="home" class="active">
   <h1>Chúng mình yêu thương 💖</h1>
   <p class="subtitle">
-    Một góc nhỏ lưu lại thanh xuân,  
-    nơi những điều bình thường trở thành kỉ niệm
+    Một góc nhỏ của thanh xuân  
+    nơi kỉ niệm được giữ lại bằng sự dịu dàng
   </p>
 </section>
 
 <section id="about">
   <h1>📖 Giới thiệu</h1>
   <div class="card">
-    <p>
-      Đây là nơi tụi mình tạo ra để lưu giữ những khoảnh khắc,
-      tiếng cười và cả những ngày rất bình thường nhưng rất đáng nhớ 💕
-    </p>
+    Đây là nơi tụi mình lưu lại những điều nhỏ xíu nhưng rất đáng nhớ 💕
   </div>
 </section>
 
@@ -162,11 +176,7 @@ footer {
   <h1>📝 Nhật ký</h1>
   <div class="card">
     <h3>🌷 Một ngày rất vui</h3>
-    <p>Hôm nay tụi mình cười rất nhiều...</p>
-  </div>
-  <div class="card">
-    <h3>☁️ Một ngày bình thường</h3>
-    <p>Chỉ là ngồi với nhau thôi mà thấy đủ.</p>
+    <p>Chỉ là ngồi cùng nhau thôi mà thấy đủ.</p>
   </div>
 </section>
 
@@ -176,7 +186,6 @@ footer {
     <div>Ảnh 1</div>
     <div>Ảnh 2</div>
     <div>Ảnh 3</div>
-    <div>Ảnh 4</div>
   </div>
 </section>
 
@@ -200,27 +209,12 @@ footer {
     </div>
     <p id="puzzleResult"></p>
   </div>
-
-  <div class="card">
-    <h3>😂 Ai là người hay…</h3>
-    <button onclick="randomPerson()">Bấm thử</button>
-    <p id="randomResult"></p>
-  </div>
-
-  <div class="card">
-    <h3>💖 Click tim</h3>
-    <button onclick="heart()">❤️ Click</button>
-    <p id="heartResult"></p>
-  </div>
 </section>
 
 <section id="letter">
   <h1>💌 Lời nhắn</h1>
   <div class="card">
-    <p>
-      Cảm ơn vì đã xuất hiện trong thanh xuân của nhau 🌷  
-      Dù sau này thế nào, mong là vẫn nhớ về nhau bằng những điều dịu dàng.
-    </p>
+    Cảm ơn vì đã xuất hiện trong thanh xuân của nhau 🌷
   </div>
 </section>
 
@@ -231,43 +225,35 @@ footer {
 </div>
 
 <script>
-function show(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("active");
 }
 
-function quiz(c){
+function openSection(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.getElementById("menu").classList.remove("active");
+}
+
+function quiz(c) {
   document.getElementById("quizResult").innerText =
     c ? "🎉 Đúng rồi! Hiểu nhau ghê 💕" : "🥲 Sai rồi nhưng vẫn thương~";
 }
 
-let pieces=0;
-function piece(el){
-  if(!el.classList.contains("done")){
+let pieces = 0;
+function piece(el) {
+  if (!el.classList.contains("done")) {
     el.classList.add("done");
-    el.style.background="#ffb3c6";
+    el.style.background = "#ffb3c6";
     pieces++;
   }
-  if(pieces===4){
-    document.getElementById("puzzleResult").innerText="✨ Hoàn thành rồi 💖";
+  if (pieces === 4) {
+    document.getElementById("puzzleResult").innerText =
+      "✨ Hoàn thành rồi 💖";
   }
-}
-
-const people=["Bạn A","Bạn B","Bạn C","Bạn D"];
-function randomPerson(){
-  document.getElementById("randomResult").innerText =
-    "👉 Là: "+people[Math.floor(Math.random()*people.length)];
-}
-
-let hearts=0;
-function heart(){
-  hearts++;
-  document.getElementById("heartResult").innerText =
-    "💗 Bạn đã nhận "+hearts+" tim!";
 }
 </script>
 
 </body>
 </html>
-
 
