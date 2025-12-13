@@ -19,15 +19,17 @@ nav {
   box-shadow: 0 5px 15px rgba(231,84,128,0.15);
   position: sticky;
   top: 0;
+  z-index: 10;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: 20px;
   margin: 0;
   padding: 0;
+  flex-wrap: wrap;
 }
 
 nav li {
@@ -41,7 +43,7 @@ nav li:hover {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 40px auto;
   background: #ffffff;
   padding: 35px;
@@ -63,7 +65,7 @@ h1 {
   margin-bottom: 30px;
 }
 
-.memory {
+.card {
   background: #fff5f8;
   padding: 20px;
   border-radius: 15px;
@@ -79,17 +81,13 @@ button {
   cursor: pointer;
   font-weight: 600;
 }
-
-button:hover {
-  background: #ffb3c6;
-}
+button:hover { background: #ffb3c6; }
 
 .puzzle {
   display: grid;
   grid-template-columns: repeat(2, 60px);
   gap: 15px;
   justify-content: center;
-  margin-top: 10px;
 }
 
 .puzzle div {
@@ -105,6 +103,19 @@ button:hover {
   box-shadow: 0 5px 10px rgba(231,84,128,0.2);
 }
 
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
+  gap: 15px;
+}
+
+.gallery div {
+  background: #ffe6ee;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+}
+
 footer {
   text-align: center;
   margin-top: 30px;
@@ -118,40 +129,69 @@ footer {
 
 <nav>
   <ul>
-    <li onclick="showSection('home')">🌸 Trang chủ</li>
-    <li onclick="showSection('game')">🎮 Trò chơi</li>
+    <li onclick="show('home')">🌸 Trang chủ</li>
+    <li onclick="show('about')">📖 Giới thiệu</li>
+    <li onclick="show('blog')">📝 Nhật ký</li>
+    <li onclick="show('memory')">📸 Kỉ niệm</li>
+    <li onclick="show('game')">🎮 Trò chơi</li>
+    <li onclick="show('letter')">💌 Lời nhắn</li>
   </ul>
 </nav>
 
 <div class="container">
 
-<!-- TRANG CHỦ -->
 <section id="home" class="active">
   <h1>Chúng mình yêu thương 💖</h1>
   <p class="subtitle">
-    Nơi lưu giữ kỉ niệm, tiếng cười  
-    và những điều nhỏ bé nhưng rất lâu quên
+    Một góc nhỏ lưu lại thanh xuân,  
+    nơi những điều bình thường trở thành kỉ niệm
   </p>
 </section>
 
-<!-- TRÒ CHƠI -->
-<section id="game">
-  <h1>🎮 Góc trò chơi</h1>
+<section id="about">
+  <h1>📖 Giới thiệu</h1>
+  <div class="card">
+    <p>
+      Đây là nơi tụi mình tạo ra để lưu giữ những khoảnh khắc,
+      tiếng cười và cả những ngày rất bình thường nhưng rất đáng nhớ 💕
+    </p>
+  </div>
+</section>
 
-  <!-- GAME 1 -->
-  <div class="memory">
+<section id="blog">
+  <h1>📝 Nhật ký</h1>
+  <div class="card">
+    <h3>🌷 Một ngày rất vui</h3>
+    <p>Hôm nay tụi mình cười rất nhiều...</p>
+  </div>
+  <div class="card">
+    <h3>☁️ Một ngày bình thường</h3>
+    <p>Chỉ là ngồi với nhau thôi mà thấy đủ.</p>
+  </div>
+</section>
+
+<section id="memory">
+  <h1>📸 Kỉ niệm</h1>
+  <div class="gallery">
+    <div>Ảnh 1</div>
+    <div>Ảnh 2</div>
+    <div>Ảnh 3</div>
+    <div>Ảnh 4</div>
+  </div>
+</section>
+
+<section id="game">
+  <h1>🎮 Trò chơi</h1>
+
+  <div class="card">
     <h3>💗 Ai hiểu chúng mình nhất?</h3>
-    <p>Nhóm mình hay làm gì nhất?</p>
     <button onclick="quiz(true)">Cười nói cả ngày</button><br>
-    <button onclick="quiz(false)">Học rất chăm</button><br>
-    <button onclick="quiz(false)">Ngồi im lặng</button>
+    <button onclick="quiz(false)">Học rất chăm</button>
     <p id="quizResult"></p>
   </div>
 
-  <!-- GAME 2 -->
-  <div class="memory">
+  <div class="card">
     <h3>🧩 Ghép mảnh kỉ niệm</h3>
-    <p>Bấm đủ các mảnh để hoàn thành 💕</p>
     <div class="puzzle">
       <div onclick="piece(this)">🌸</div>
       <div onclick="piece(this)">💖</div>
@@ -161,27 +201,27 @@ footer {
     <p id="puzzleResult"></p>
   </div>
 
-  <!-- GAME 3 -->
-  <div class="memory">
+  <div class="card">
     <h3>😂 Ai là người hay…</h3>
-    <button onclick="randomPerson()">Bấm thử xem ai nè</button>
+    <button onclick="randomPerson()">Bấm thử</button>
     <p id="randomResult"></p>
   </div>
 
-  <!-- GAME 4 -->
-  <div class="memory">
-    <h3>🎁 Bốc thăm may mắn</h3>
-    <button onclick="lucky()">Quay nào!</button>
-    <p id="luckyResult"></p>
-  </div>
-
-  <!-- GAME 5 -->
-  <div class="memory">
-    <h3>💖 Click tim nhận yêu thương</h3>
+  <div class="card">
+    <h3>💖 Click tim</h3>
     <button onclick="heart()">❤️ Click</button>
     <p id="heartResult"></p>
   </div>
+</section>
 
+<section id="letter">
+  <h1>💌 Lời nhắn</h1>
+  <div class="card">
+    <p>
+      Cảm ơn vì đã xuất hiện trong thanh xuân của nhau 🌷  
+      Dù sau này thế nào, mong là vẫn nhớ về nhau bằng những điều dịu dàng.
+    </p>
+  </div>
 </section>
 
 <footer>
@@ -191,48 +231,39 @@ footer {
 </div>
 
 <script>
-function showSection(id) {
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+function show(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }
 
-function quiz(correct) {
+function quiz(c){
   document.getElementById("quizResult").innerText =
-    correct ? "🎉 Đúng rồi! Hiểu nhau ghê luôn 💖"
-            : "🥲 Sai rồi, nhưng vẫn thương nha~";
+    c ? "🎉 Đúng rồi! Hiểu nhau ghê 💕" : "🥲 Sai rồi nhưng vẫn thương~";
 }
 
-let pieces = 0;
-function piece(el) {
-  if (!el.classList.contains("done")) {
+let pieces=0;
+function piece(el){
+  if(!el.classList.contains("done")){
     el.classList.add("done");
-    el.style.background = "#ffb3c6";
+    el.style.background="#ffb3c6";
     pieces++;
   }
-  if (pieces === 4) {
-    document.getElementById("puzzleResult").innerText =
-      "✨ Hoàn thành rồi! Kỉ niệm đã ghép xong 💕";
+  if(pieces===4){
+    document.getElementById("puzzleResult").innerText="✨ Hoàn thành rồi 💖";
   }
 }
 
-const people = ["Bạn A", "Bạn B", "Bạn C", "Bạn D"];
-function randomPerson() {
+const people=["Bạn A","Bạn B","Bạn C","Bạn D"];
+function randomPerson(){
   document.getElementById("randomResult").innerText =
-    "👉 Người được gọi tên là: " +
-    people[Math.floor(Math.random() * people.length)];
+    "👉 Là: "+people[Math.floor(Math.random()*people.length)];
 }
 
-function lucky() {
-  document.getElementById("luckyResult").innerText =
-    "🎁 Người may mắn hôm nay là: " +
-    people[Math.floor(Math.random() * people.length)];
-}
-
-let hearts = 0;
-function heart() {
+let hearts=0;
+function heart(){
   hearts++;
   document.getElementById("heartResult").innerText =
-    "💗 Bạn đã nhận " + hearts + " tim yêu thương!";
+    "💗 Bạn đã nhận "+hearts+" tim!";
 }
 </script>
 
