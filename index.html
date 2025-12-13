@@ -1,94 +1,242 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Chúng mình yêu thương</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Chúng mình yêu thương</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #ffe6ee, #fff);
-      color: #5a3e4c;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(180deg, #ffe6ee, #fff);
+  color: #5a3e4c;
+}
 
-    .container {
-      max-width: 700px;
-      margin: 60px auto;
-      background: #ffffff;
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 35px rgba(231, 84, 128, 0.15);
-      text-align: center;
-    }
+nav {
+  background: #fff;
+  padding: 15px;
+  box-shadow: 0 5px 15px rgba(231,84,128,0.15);
+  position: sticky;
+  top: 0;
+}
 
-    h1 {
-      color: #e75480;
-      font-size: 2.2em;
-      margin-bottom: 10px;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
 
-    .subtitle {
-      font-size: 1.1em;
-      color: #8a5a6d;
-      margin-bottom: 30px;
-    }
+nav li {
+  cursor: pointer;
+  font-weight: 600;
+  color: #e75480;
+}
 
-    .heart {
-      font-size: 2em;
-      margin: 15px 0;
-    }
+nav li:hover {
+  color: #ff8fab;
+}
 
-    .memory {
-      background: #fff5f8;
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 15px;
-      text-align: left;
-    }
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(231,84,128,0.15);
+}
 
-    .memory h3 {
-      margin: 0 0 5px;
-      color: #e75480;
-    }
+section { display: none; }
+section.active { display: block; }
 
-    .memory p {
-      margin: 0;
-      font-size: 0.95em;
-    }
+h1 {
+  text-align: center;
+  color: #e75480;
+}
 
-    footer {
-      margin-top: 30px;
-      font-size: 0.85em;
-      color: #aa7b8c;
-    }
-  </style>
+.subtitle {
+  text-align: center;
+  color: #8a5a6d;
+  margin-bottom: 30px;
+}
+
+.memory {
+  background: #fff5f8;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+button {
+  background: #ffe6ee;
+  border: none;
+  padding: 8px 14px;
+  margin: 6px 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #ffb3c6;
+}
+
+.puzzle {
+  display: grid;
+  grid-template-columns: repeat(2, 60px);
+  gap: 15px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.puzzle div {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(231,84,128,0.2);
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: #aa7b8c;
+  font-size: 0.85em;
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Chúng mình yêu thương 💖</h1>
-    <div class="subtitle">
-      kỉ niệm iu thưn của chúng mình
-    </div>
 
-    <div class="heart">🌸🌸🌸</div>
+<nav>
+  <ul>
+    <li onclick="showSection('home')">🌸 Trang chủ</li>
+    <li onclick="showSection('game')">🎮 Trò chơi</li>
+  </ul>
+</nav>
 
-    <div class="memory">
-      <h3>📅 Ngày đầu quen nhau</h3>
-      <p>Một ngày rất bình thường nhưng lại bắt đầu cho rất nhiều điều đáng nhớ.</p>
-    </div>
+<div class="container">
 
-    <div class="memory">
-      <h3>📸 Kỉ niệm đáng nhớ</h3>
-      <p>Cười rất nhiều, nói rất nhiều, và chẳng ai nghĩ sau này sẽ nhớ đến thế.</p>
-    </div>
+<!-- TRANG CHỦ -->
+<section id="home" class="active">
+  <h1>Chúng mình yêu thương 💖</h1>
+  <p class="subtitle">
+    Nơi lưu giữ kỉ niệm, tiếng cười  
+    và những điều nhỏ bé nhưng rất lâu quên
+  </p>
+</section>
 
-    <footer>
-      ✨ Thanh xuân của chúng mình ✨
-    </footer>
+<!-- TRÒ CHƠI -->
+<section id="game">
+  <h1>🎮 Góc trò chơi</h1>
+
+  <!-- GAME 1 -->
+  <div class="memory">
+    <h3>💗 Ai hiểu chúng mình nhất?</h3>
+    <p>Nhóm mình hay làm gì nhất?</p>
+    <button onclick="quiz(true)">Cười nói cả ngày</button><br>
+    <button onclick="quiz(false)">Học rất chăm</button><br>
+    <button onclick="quiz(false)">Ngồi im lặng</button>
+    <p id="quizResult"></p>
   </div>
+
+  <!-- GAME 2 -->
+  <div class="memory">
+    <h3>🧩 Ghép mảnh kỉ niệm</h3>
+    <p>Bấm đủ các mảnh để hoàn thành 💕</p>
+    <div class="puzzle">
+      <div onclick="piece(this)">🌸</div>
+      <div onclick="piece(this)">💖</div>
+      <div onclick="piece(this)">📸</div>
+      <div onclick="piece(this)">✨</div>
+    </div>
+    <p id="puzzleResult"></p>
+  </div>
+
+  <!-- GAME 3 -->
+  <div class="memory">
+    <h3>😂 Ai là người hay…</h3>
+    <button onclick="randomPerson()">Bấm thử xem ai nè</button>
+    <p id="randomResult"></p>
+  </div>
+
+  <!-- GAME 4 -->
+  <div class="memory">
+    <h3>🎁 Bốc thăm may mắn</h3>
+    <button onclick="lucky()">Quay nào!</button>
+    <p id="luckyResult"></p>
+  </div>
+
+  <!-- GAME 5 -->
+  <div class="memory">
+    <h3>💖 Click tim nhận yêu thương</h3>
+    <button onclick="heart()">❤️ Click</button>
+    <p id="heartResult"></p>
+  </div>
+
+</section>
+
+<footer>
+  ✨ Thanh xuân của chúng mình ✨
+</footer>
+
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+
+function quiz(correct) {
+  document.getElementById("quizResult").innerText =
+    correct ? "🎉 Đúng rồi! Hiểu nhau ghê luôn 💖"
+            : "🥲 Sai rồi, nhưng vẫn thương nha~";
+}
+
+let pieces = 0;
+function piece(el) {
+  if (!el.classList.contains("done")) {
+    el.classList.add("done");
+    el.style.background = "#ffb3c6";
+    pieces++;
+  }
+  if (pieces === 4) {
+    document.getElementById("puzzleResult").innerText =
+      "✨ Hoàn thành rồi! Kỉ niệm đã ghép xong 💕";
+  }
+}
+
+const people = ["Bạn A", "Bạn B", "Bạn C", "Bạn D"];
+function randomPerson() {
+  document.getElementById("randomResult").innerText =
+    "👉 Người được gọi tên là: " +
+    people[Math.floor(Math.random() * people.length)];
+}
+
+function lucky() {
+  document.getElementById("luckyResult").innerText =
+    "🎁 Người may mắn hôm nay là: " +
+    people[Math.floor(Math.random() * people.length)];
+}
+
+let hearts = 0;
+function heart() {
+  hearts++;
+  document.getElementById("heartResult").innerText =
+    "💗 Bạn đã nhận " + hearts + " tim yêu thương!";
+}
+</script>
+
 </body>
 </html>
+
 
