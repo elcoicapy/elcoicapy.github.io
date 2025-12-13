@@ -5,147 +5,237 @@
 <title>Chúng mình yêu thương</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(180deg, #ffe6ee, #fff);
-  color: #5a3e4c;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #ffd6e9, #fff);
+  overflow-x: hidden;
+  color: #6a3f52;
 }
 
-/* MENU BUTTON */
+/* DECOR FLOATING */
+.decor {
+  position: fixed;
+  border-radius: 50%;
+  opacity: 0.25;
+  z-index: 1;
+  animation: float 8s ease-in-out infinite;
+}
+.decor.one { width: 220px; height: 220px; background:#ffb6d5; top:-80px; left:-80px; }
+.decor.two { width: 150px; height:150px; background:#fff1a8; bottom:100px; right:-60px; animation-delay:2s;}
+.decor.three { width:120px; height:120px; background:#e5d4ff; top:300px; right:-40px; animation-delay:4s;}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* TOP BUTTONS */
+.home-btn {
+  position: fixed;
+  top: 18px;
+  left: 20px;
+  font-weight: 600;
+  color: #ff5c8a;
+  cursor: pointer;
+  z-index: 50;
+}
 .menu-btn {
   position: fixed;
   top: 15px;
   right: 20px;
-  font-size: 26px;
+  font-size: 28px;
+  color: #ff5c8a;
   cursor: pointer;
-  color: #e75480;
-  z-index: 20;
+  z-index: 50;
 }
 
-/* SIDE MENU */
+/* MENU */
 .side-menu {
   position: fixed;
   top: 0;
-  right: -260px;
-  width: 250px;
+  right: -280px;
+  width: 270px;
   height: 100%;
   background: #fff;
-  box-shadow: -5px 0 20px rgba(231,84,128,0.2);
-  padding-top: 60px;
-  transition: 0.3s;
-  z-index: 15;
+  box-shadow: -10px 0 30px rgba(255,92,138,.25);
+  padding-top: 90px;
+  transition: .35s;
+  z-index: 40;
+  border-radius: 30px 0 0 30px;
 }
-
-.side-menu.active {
-  right: 0;
-}
-
+.side-menu.active { right:0; }
 .side-menu a {
-  display: block;
-  padding: 15px 25px;
-  text-decoration: none;
-  color: #e75480;
-  font-weight: 600;
+  display:block;
+  padding:16px 30px;
+  text-decoration:none;
+  color:#ff5c8a;
+  font-weight:600;
 }
-
 .side-menu a:hover {
-  background: #ffe6ee;
+  background:#ffe6f0;
 }
 
-/* CONTENT */
+/* CONTAINER */
 .container {
-  max-width: 900px;
-  margin: 100px auto 40px;
-  background: #ffffff;
-  padding: 35px;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(231,84,128,0.15);
+  max-width: 950px;
+  margin: 110px auto 50px;
+  background: rgba(255,255,255,.75);
+  backdrop-filter: blur(8px);
+  border-radius: 40px;
+  padding: 45px;
+  box-shadow: 0 35px 70px rgba(255,92,138,.25);
+  position: relative;
+  z-index: 10;
 }
 
-section { display: none; }
-section.active { display: block; }
+section { display:none; }
+section.active { display:block; }
 
+/* HOME HERO */
+.home-hero {
+  height: 420px;
+  border-radius: 35px;
+  background: linear-gradient(180deg,#ffb6d5,#ffd6e9);
+  position: relative;
+  overflow: hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.home-hero::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity:.4;
+}
+
+.bubble {
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.35);
+}
+.bubble.big { width:180px;height:180px;left:10%;top:25%; }
+.bubble.small { width:120px;height:120px;right:15%;top:30%; }
+
+.clouds {
+  position:absolute;
+  bottom:-30px;
+  width:120%;
+  height:170px;
+  background:
+  radial-gradient(circle at 20% 50%,#fff 40%,transparent 41%),
+  radial-gradient(circle at 50% 50%,#fff 45%,transparent 46%),
+  radial-gradient(circle at 80% 50%,#fff 40%,transparent 41%);
+}
+
+.home-text {
+  text-align:center;
+  color:#fff;
+  z-index:2;
+}
+.home-text .script {
+  font-family:"Pacifico", cursive;
+  font-size:2.4em;
+}
+.home-text .title {
+  font-family:"Playfair Display", serif;
+  font-size:3.6em;
+  line-height:1.1;
+}
+.home-btn-main {
+  margin-top:22px;
+  padding:12px 28px;
+  border-radius:25px;
+  background:#ff5c8a;
+  color:#fff;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+}
+.home-btn-main:hover { background:#ff3d75; }
+
+/* SECTION STYLE */
 h1 {
-  text-align: center;
-  color: #e75480;
+  text-align:center;
+  font-family:"Playfair Display", serif;
+  color:#ff5c8a;
 }
-
-.subtitle {
-  text-align: center;
-  color: #8a5a6d;
-  margin-bottom: 30px;
-}
-
 .card {
-  background: #fff5f8;
-  padding: 20px;
-  border-radius: 15px;
-  margin: 20px 0;
+  background:#fff;
+  border-radius:28px;
+  padding:25px;
+  margin:25px 0;
+  box-shadow:0 15px 30px rgba(255,92,138,.15);
 }
 
-button {
-  background: #ffe6ee;
-  border: none;
-  padding: 8px 14px;
-  margin: 6px 0;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-button:hover {
-  background: #ffb3c6;
-}
-
-.puzzle {
-  display: grid;
-  grid-template-columns: repeat(2, 60px);
-  gap: 15px;
-  justify-content: center;
-}
-
-.puzzle div {
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5em;
-  cursor: pointer;
-}
-
+/* GALLERY */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px,1fr));
-  gap: 15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:20px;
+}
+.gallery div {
+  background:linear-gradient(135deg,#ffe6f0,#fff);
+  border-radius:20px;
+  padding:40px 10px;
+  text-align:center;
 }
 
-.gallery div {
-  background: #ffe6ee;
-  border-radius: 12px;
-  padding: 30px;
-  text-align: center;
+/* GAME */
+button {
+  background:linear-gradient(135deg,#ffd6e5,#ffb3c6);
+  border:none;
+  padding:10px 18px;
+  border-radius:14px;
+  cursor:pointer;
+  font-weight:600;
+}
+.puzzle {
+  display:grid;
+  grid-template-columns:repeat(2,70px);
+  gap:18px;
+  justify-content:center;
+}
+.puzzle div {
+  width:70px;
+  height:70px;
+  background:#fff;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.6em;
+  cursor:pointer;
 }
 
 footer {
-  text-align: center;
-  margin-top: 30px;
-  color: #aa7b8c;
-  font-size: 0.85em;
+  text-align:center;
+  margin-top:40px;
+  font-size:.85em;
+  color:#aa7b8c;
 }
 </style>
 </head>
 
 <body>
 
-<!-- MENU ICON -->
+<div class="decor one"></div>
+<div class="decor two"></div>
+<div class="decor three"></div>
+
+<div class="home-btn" onclick="goHome()">Trang chủ</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
-<!-- SIDE MENU -->
 <div class="side-menu" id="menu">
   <a onclick="openSection('about')">📖 Giới thiệu</a>
   <a onclick="openSection('blog')">📝 Nhật ký</a>
@@ -156,49 +246,44 @@ footer {
 
 <div class="container">
 
-<!-- HOME -->
 <section id="home" class="active">
-  <h1>Chúng mình yêu thương 💖</h1>
-  <p class="subtitle">
-    Một góc nhỏ của thanh xuân  
-    nơi kỉ niệm được giữ lại bằng sự dịu dàng
-  </p>
+  <div class="home-hero">
+    <div class="bubble big"></div>
+    <div class="bubble small"></div>
+    <div class="home-text">
+      <div class="script">Chúng mình</div>
+      <div class="title">Yêu Thương</div>
+      <button class="home-btn-main" onclick="toggleMenu()">Khám phá ✨</button>
+    </div>
+    <div class="clouds"></div>
+  </div>
 </section>
 
 <section id="about">
   <h1>📖 Giới thiệu</h1>
-  <div class="card">
-    Đây là nơi tụi mình lưu lại những điều nhỏ xíu nhưng rất đáng nhớ 💕
-  </div>
+  <div class="card">Một góc nhỏ để giữ lại thanh xuân 💕</div>
 </section>
 
 <section id="blog">
   <h1>📝 Nhật ký</h1>
-  <div class="card">
-    <h3>🌷 Một ngày rất vui</h3>
-    <p>Chỉ là ngồi cùng nhau thôi mà thấy đủ.</p>
-  </div>
+  <div class="card">Hôm nay tụi mình cười rất nhiều ✨</div>
 </section>
 
 <section id="memory">
   <h1>📸 Kỉ niệm</h1>
   <div class="gallery">
-    <div>Ảnh 1</div>
-    <div>Ảnh 2</div>
-    <div>Ảnh 3</div>
+    <div>Ảnh 1</div><div>Ảnh 2</div><div>Ảnh 3</div>
   </div>
 </section>
 
 <section id="game">
   <h1>🎮 Trò chơi</h1>
-
   <div class="card">
-    <h3>💗 Ai hiểu chúng mình nhất?</h3>
-    <button onclick="quiz(true)">Cười nói cả ngày</button><br>
-    <button onclick="quiz(false)">Học rất chăm</button>
+    <h3>Ai hiểu chúng mình nhất?</h3>
+    <button onclick="quiz(true)">Luôn bên nhau</button><br>
+    <button onclick="quiz(false)">Hay cãi nhau</button>
     <p id="quizResult"></p>
   </div>
-
   <div class="card">
     <h3>🧩 Ghép mảnh kỉ niệm</h3>
     <div class="puzzle">
@@ -213,47 +298,37 @@ footer {
 
 <section id="letter">
   <h1>💌 Lời nhắn</h1>
-  <div class="card">
-    Cảm ơn vì đã xuất hiện trong thanh xuân của nhau 🌷
-  </div>
+  <div class="card">Cảm ơn vì đã xuất hiện trong thanh xuân 🌷</div>
 </section>
 
-<footer>
-  ✨ Thanh xuân của chúng mình ✨
-</footer>
-
+<footer>✨ Thanh xuân của chúng mình ✨</footer>
 </div>
 
 <script>
-function toggleMenu() {
-  document.getElementById("menu").classList.toggle("active");
-}
-
-function openSection(id) {
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+function toggleMenu(){menu.classList.toggle("active")}
+function openSection(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-  document.getElementById("menu").classList.remove("active");
+  menu.classList.remove("active");
 }
-
-function quiz(c) {
-  document.getElementById("quizResult").innerText =
-    c ? "🎉 Đúng rồi! Hiểu nhau ghê 💕" : "🥲 Sai rồi nhưng vẫn thương~";
+function goHome(){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  home.classList.add("active");
+  menu.classList.remove("active");
 }
-
-let pieces = 0;
-function piece(el) {
-  if (!el.classList.contains("done")) {
-    el.classList.add("done");
-    el.style.background = "#ffb3c6";
-    pieces++;
+function quiz(c){
+  quizResult.innerText=c?"💖 Đúng rồi~":"🥲 Nhưng vẫn thương~";
+}
+let p=0;
+function piece(e){
+  if(!e.classList.contains("done")){
+    e.classList.add("done");
+    e.style.background="#ffb3c6";
+    p++;
   }
-  if (pieces === 4) {
-    document.getElementById("puzzleResult").innerText =
-      "✨ Hoàn thành rồi 💖";
-  }
+  if(p===4)puzzleResult.innerText="✨ Hoàn thành rồi!";
 }
 </script>
 
 </body>
 </html>
-
