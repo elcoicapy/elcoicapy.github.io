@@ -5,129 +5,159 @@
 <title>Chúng mình yêu thương</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- GOOGLE FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- GOOGLE FONTS (CANVA STYLE) -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-* { box-sizing: border-box; }
+*{box-sizing:border-box}
 
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(180deg, #ffd6e9, #fff);
-  overflow-x: hidden;
-  color: #6a3f52;
+body{
+  margin:0;
+  font-family:"Quicksand",sans-serif;
+  background:linear-gradient(180deg,#ffd6e9,#fff);
+  overflow-x:hidden;
+  color:#6a3f52;
 }
 
-/* DECOR FLOATING */
-.decor {
-  position: fixed;
-  border-radius: 50%;
-  opacity: 0.25;
-  z-index: 1;
-  animation: float 8s ease-in-out infinite;
+/* FLOATING SPARKLES */
+.sparkle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  opacity:.8;
+  animation:sparkleMove linear infinite;
+  z-index:1;
 }
-.decor.one { width: 220px; height: 220px; background:#ffb6d5; top:-80px; left:-80px; }
-.decor.two { width: 150px; height:150px; background:#fff1a8; bottom:100px; right:-60px; animation-delay:2s;}
-.decor.three { width:120px; height:120px; background:#e5d4ff; top:300px; right:-40px; animation-delay:4s;}
+@keyframes sparkleMove{
+  from{transform:translateY(110vh);opacity:0}
+  10%{opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
+}
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+/* FLOATING BUBBLES */
+.bubble-float{
+  position:fixed;
+  border-radius:50%;
+  background:rgba(255,255,255,.35);
+  animation:float 10s ease-in-out infinite;
+  z-index:1;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-25px)}
 }
 
 /* TOP BUTTONS */
-.home-btn {
-  position: fixed;
-  top: 18px;
-  left: 20px;
-  font-weight: 600;
-  color: #ff5c8a;
-  cursor: pointer;
-  z-index: 50;
-}
-.menu-btn {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  font-size: 28px;
-  color: #ff5c8a;
-  cursor: pointer;
-  z-index: 50;
-}
-
-/* MENU */
-.side-menu {
-  position: fixed;
-  top: 0;
-  right: -280px;
-  width: 270px;
-  height: 100%;
-  background: #fff;
-  box-shadow: -10px 0 30px rgba(255,92,138,.25);
-  padding-top: 90px;
-  transition: .35s;
-  z-index: 40;
-  border-radius: 30px 0 0 30px;
-}
-.side-menu.active { right:0; }
-.side-menu a {
-  display:block;
-  padding:16px 30px;
-  text-decoration:none;
+.home-btn,.menu-btn{
+  position:fixed;
+  top:16px;
+  z-index:50;
   color:#ff5c8a;
   font-weight:600;
+  cursor:pointer;
 }
-.side-menu a:hover {
-  background:#ffe6f0;
+.home-btn{left:20px}
+.menu-btn{right:20px;font-size:28px}
+
+/* MENU */
+.side-menu{
+  position:fixed;
+  top:0;
+  right:-280px;
+  width:270px;
+  height:100%;
+  background:#fff;
+  box-shadow:-10px 0 30px rgba(255,92,138,.25);
+  padding-top:90px;
+  transition:.4s;
+  z-index:40;
+  border-radius:30px 0 0 30px;
 }
+.side-menu.active{right:0}
+.side-menu a{
+  display:block;
+  padding:16px 30px;
+  color:#ff5c8a;
+  font-weight:600;
+  text-decoration:none;
+}
+.side-menu a:hover{background:#ffe6f0}
 
 /* CONTAINER */
-.container {
-  max-width: 950px;
-  margin: 110px auto 50px;
-  background: rgba(255,255,255,.75);
-  backdrop-filter: blur(8px);
-  border-radius: 40px;
-  padding: 45px;
-  box-shadow: 0 35px 70px rgba(255,92,138,.25);
-  position: relative;
-  z-index: 10;
+.container{
+  max-width:950px;
+  margin:110px auto 50px;
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(8px);
+  border-radius:40px;
+  padding:45px;
+  box-shadow:0 35px 70px rgba(255,92,138,.25);
+  position:relative;
+  z-index:10;
+  overflow:hidden;
 }
 
-section { display:none; }
-section.active { display:block; }
+/* SLIDE TRANSITION */
+section{
+  display:none;
+  animation:slide .6s ease;
+}
+section.active{display:block}
+@keyframes slide{
+  from{opacity:0;transform:translateX(40px)}
+  to{opacity:1;transform:translateX(0)}
+}
 
-/* HOME HERO */
-.home-hero {
-  height: 420px;
-  border-radius: 35px;
-  background: linear-gradient(180deg,#ffb6d5,#ffd6e9);
-  position: relative;
-  overflow: hidden;
+/* HOME */
+.home-hero{
+  height:420px;
+  border-radius:35px;
+  background:linear-gradient(180deg,#ffb6d5,#ffd6e9);
+  position:relative;
+  overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
 }
-
-.home-hero::before {
+.home-hero::before{
   content:"";
   position:absolute;
   inset:0;
-  background-image: radial-gradient(white 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-image:radial-gradient(white 1px,transparent 1px);
+  background-size:22px 22px;
   opacity:.4;
 }
 
-.bubble {
-  position:absolute;
-  border-radius:50%;
-  background:rgba(255,255,255,.35);
+.home-text{
+  text-align:center;
+  color:#fff;
+  z-index:2;
 }
-.bubble.big { width:180px;height:180px;left:10%;top:25%; }
-.bubble.small { width:120px;height:120px;right:15%;top:30%; }
+.home-text .script{
+  font-family:"Pacifico",cursive;
+  font-size:2.5em;
+}
+.home-text .title{
+  font-family:"Playfair Display",serif;
+  font-size:3.6em;
+  line-height:1.1;
+}
+.home-btn-main{
+  margin-top:22px;
+  padding:12px 30px;
+  border-radius:30px;
+  background:#ff5c8a;
+  color:#fff;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+}
+.home-btn-main:hover{background:#ff3d75}
 
-.clouds {
+/* CLOUDS */
+.clouds{
   position:absolute;
   bottom:-30px;
   width:120%;
@@ -138,39 +168,13 @@ section.active { display:block; }
   radial-gradient(circle at 80% 50%,#fff 40%,transparent 41%);
 }
 
-.home-text {
-  text-align:center;
-  color:#fff;
-  z-index:2;
-}
-.home-text .script {
-  font-family:"Pacifico", cursive;
-  font-size:2.4em;
-}
-.home-text .title {
-  font-family:"Playfair Display", serif;
-  font-size:3.6em;
-  line-height:1.1;
-}
-.home-btn-main {
-  margin-top:22px;
-  padding:12px 28px;
-  border-radius:25px;
-  background:#ff5c8a;
-  color:#fff;
-  border:none;
-  font-weight:600;
-  cursor:pointer;
-}
-.home-btn-main:hover { background:#ff3d75; }
-
 /* SECTION STYLE */
-h1 {
+h1{
   text-align:center;
-  font-family:"Playfair Display", serif;
+  font-family:"Playfair Display",serif;
   color:#ff5c8a;
 }
-.card {
+.card{
   background:#fff;
   border-radius:28px;
   padding:25px;
@@ -178,13 +182,19 @@ h1 {
   box-shadow:0 15px 30px rgba(255,92,138,.15);
 }
 
+/* ICON DECOR */
+.icon{
+  font-size:1.4em;
+  margin-right:6px;
+}
+
 /* GALLERY */
-.gallery {
+.gallery{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
   gap:20px;
 }
-.gallery div {
+.gallery div{
   background:linear-gradient(135deg,#ffe6f0,#fff);
   border-radius:20px;
   padding:40px 10px;
@@ -192,7 +202,7 @@ h1 {
 }
 
 /* GAME */
-button {
+button{
   background:linear-gradient(135deg,#ffd6e5,#ffb3c6);
   border:none;
   padding:10px 18px;
@@ -200,13 +210,13 @@ button {
   cursor:pointer;
   font-weight:600;
 }
-.puzzle {
+.puzzle{
   display:grid;
   grid-template-columns:repeat(2,70px);
   gap:18px;
   justify-content:center;
 }
-.puzzle div {
+.puzzle div{
   width:70px;
   height:70px;
   background:#fff;
@@ -218,7 +228,7 @@ button {
   cursor:pointer;
 }
 
-footer {
+footer{
   text-align:center;
   margin-top:40px;
   font-size:.85em;
@@ -229,17 +239,29 @@ footer {
 
 <body>
 
-<div class="decor one"></div>
-<div class="decor two"></div>
-<div class="decor three"></div>
+<!-- FLOATING ELEMENTS -->
+<div class="bubble-float" style="width:160px;height:160px;left:8%;top:30%"></div>
+<div class="bubble-float" style="width:110px;height:110px;right:12%;top:35%;animation-delay:2s"></div>
 
-<div class="home-btn" onclick="goHome()">Trang chủ</div>
+<!-- SPARKLES -->
+<script>
+for(let i=0;i<35;i++){
+  let s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=5+Math.random()*6+"s";
+  s.style.animationDelay=Math.random()*5+"s";
+  document.body.appendChild(s);
+}
+</script>
+
+<div class="home-btn" onclick="goHome()">🏠 Trang chủ</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <div class="side-menu" id="menu">
-  <a onclick="openSection('about')">📖 Giới thiệu</a>
-  <a onclick="openSection('blog')">📝 Nhật ký</a>
-  <a onclick="openSection('memory')">📸 Kỉ niệm</a>
+  <a onclick="openSection('about')">🐰 Giới thiệu</a>
+  <a onclick="openSection('blog')">✨ Nhật ký</a>
+  <a onclick="openSection('memory')">💖 Kỉ niệm</a>
   <a onclick="openSection('game')">🎮 Trò chơi</a>
   <a onclick="openSection('letter')">💌 Lời nhắn</a>
 </div>
@@ -248,8 +270,6 @@ footer {
 
 <section id="home" class="active">
   <div class="home-hero">
-    <div class="bubble big"></div>
-    <div class="bubble small"></div>
     <div class="home-text">
       <div class="script">Chúng mình</div>
       <div class="title">Yêu Thương</div>
@@ -260,19 +280,19 @@ footer {
 </section>
 
 <section id="about">
-  <h1>📖 Giới thiệu</h1>
-  <div class="card">Một góc nhỏ để giữ lại thanh xuân 💕</div>
+  <h1>🐰 Giới thiệu</h1>
+  <div class="card">Một nơi nhỏ để giữ lại những điều dịu dàng nhất 💕</div>
 </section>
 
 <section id="blog">
-  <h1>📝 Nhật ký</h1>
-  <div class="card">Hôm nay tụi mình cười rất nhiều ✨</div>
+  <h1>✨ Nhật ký</h1>
+  <div class="card">Hôm nay tụi mình lại cười cùng nhau 🌷</div>
 </section>
 
 <section id="memory">
-  <h1>📸 Kỉ niệm</h1>
+  <h1>💖 Kỉ niệm</h1>
   <div class="gallery">
-    <div>Ảnh 1</div><div>Ảnh 2</div><div>Ảnh 3</div>
+    <div>📸 Ảnh 1</div><div>📸 Ảnh 2</div><div>📸 Ảnh 3</div>
   </div>
 </section>
 
@@ -281,24 +301,14 @@ footer {
   <div class="card">
     <h3>Ai hiểu chúng mình nhất?</h3>
     <button onclick="quiz(true)">Luôn bên nhau</button><br>
-    <button onclick="quiz(false)">Hay cãi nhau</button>
+    <button onclick="quiz(false)">Hay giận dỗi</button>
     <p id="quizResult"></p>
-  </div>
-  <div class="card">
-    <h3>🧩 Ghép mảnh kỉ niệm</h3>
-    <div class="puzzle">
-      <div onclick="piece(this)">🌸</div>
-      <div onclick="piece(this)">💖</div>
-      <div onclick="piece(this)">📸</div>
-      <div onclick="piece(this)">✨</div>
-    </div>
-    <p id="puzzleResult"></p>
   </div>
 </section>
 
 <section id="letter">
   <h1>💌 Lời nhắn</h1>
-  <div class="card">Cảm ơn vì đã xuất hiện trong thanh xuân 🌷</div>
+  <div class="card">Cảm ơn vì đã xuất hiện trong thanh xuân 🌸</div>
 </section>
 
 <footer>✨ Thanh xuân của chúng mình ✨</footer>
@@ -319,16 +329,8 @@ function goHome(){
 function quiz(c){
   quizResult.innerText=c?"💖 Đúng rồi~":"🥲 Nhưng vẫn thương~";
 }
-let p=0;
-function piece(e){
-  if(!e.classList.contains("done")){
-    e.classList.add("done");
-    e.style.background="#ffb3c6";
-    p++;
-  }
-  if(p===4)puzzleResult.innerText="✨ Hoàn thành rồi!";
-}
 </script>
 
 </body>
 </html>
+
