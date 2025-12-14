@@ -5,12 +5,11 @@
 <title>Elcoi and Capy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- GOOGLE FONTS (CANVA STYLE) -->
+<!-- GOOGLE FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:"Quicksand",sans-serif;
@@ -19,16 +18,13 @@ body{
   color:#6a3f52;
 }
 
-/* FLOATING SPARKLES */
+/* SPARKLES */
 .sparkle{
   position:fixed;
-  width:6px;
-  height:6px;
-  background:white;
-  border-radius:50%;
-  opacity:.8;
+  width:6px;height:6px;
+  background:white;border-radius:50%;
   animation:sparkleMove linear infinite;
-  z-index:1;
+  opacity:.8;z-index:1;
 }
 @keyframes sparkleMove{
   from{transform:translateY(110vh);opacity:0}
@@ -36,7 +32,7 @@ body{
   to{transform:translateY(-10vh);opacity:0}
 }
 
-/* FLOATING BUBBLES */
+/* BUBBLES */
 .bubble-float{
   position:fixed;
   border-radius:50%;
@@ -49,31 +45,24 @@ body{
   50%{transform:translateY(-25px)}
 }
 
-/* TOP BUTTONS */
+/* TOP */
 .home-btn,.menu-btn{
-  position:fixed;
-  top:16px;
-  z-index:50;
-  color:#ff5c8a;
-  font-weight:600;
-  cursor:pointer;
+  position:fixed;top:16px;z-index:50;
+  color:#ff5c8a;font-weight:600;cursor:pointer;
 }
 .home-btn{left:20px}
 .menu-btn{right:20px;font-size:28px}
 
 /* MENU */
 .side-menu{
-  position:fixed;
-  top:0;
-  right:-280px;
-  width:270px;
-  height:100%;
+  position:fixed;top:0;right:-280px;
+  width:270px;height:100%;
   background:#fff;
   box-shadow:-10px 0 30px rgba(255,92,138,.25);
   padding-top:90px;
   transition:.4s;
-  z-index:40;
   border-radius:30px 0 0 30px;
+  z-index:40;
 }
 .side-menu.active{right:0}
 .side-menu a{
@@ -94,16 +83,11 @@ body{
   border-radius:40px;
   padding:45px;
   box-shadow:0 35px 70px rgba(255,92,138,.25);
-  position:relative;
-  z-index:10;
-  overflow:hidden;
+  position:relative;z-index:10;
 }
 
-/* SLIDE TRANSITION */
-section{
-  display:none;
-  animation:slide .6s ease;
-}
+/* SLIDE */
+section{display:none;animation:slide .6s ease}
 section.active{display:block}
 @keyframes slide{
   from{opacity:0;transform:translateX(40px)}
@@ -112,138 +96,82 @@ section.active{display:block}
 
 /* HOME */
 .home-hero{
-  height:420px;
-  border-radius:35px;
+  height:420px;border-radius:35px;
   background:linear-gradient(180deg,#ffb6d5,#ffd6e9);
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
 }
 .home-hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
+  content:"";position:absolute;inset:0;
   background-image:radial-gradient(white 1px,transparent 1px);
-  background-size:22px 22px;
-  opacity:.4;
+  background-size:22px 22px;opacity:.4;
 }
-
-.home-text{
-  text-align:center;
-  color:#fff;
-  z-index:2;
-}
-.home-text .script{
-  font-family:"Pacifico",cursive;
-  font-size:2.5em;
-}
-.home-text .title{
-  font-family:"Playfair Display",serif;
-  font-size:3.6em;
-  line-height:1.1;
-}
+.home-text{text-align:center;color:#fff;z-index:2}
+.home-text .script{font-family:"Pacifico";font-size:2.5em}
+.home-text .title{font-family:"Playfair Display";font-size:3.6em}
 .home-btn-main{
-  margin-top:22px;
-  padding:12px 30px;
+  margin-top:22px;padding:12px 30px;
   border-radius:30px;
-  background:#ff5c8a;
-  color:#fff;
-  border:none;
-  font-weight:600;
-  cursor:pointer;
+  background:#ff5c8a;color:#fff;
+  border:none;cursor:pointer;
 }
 .home-btn-main:hover{background:#ff3d75}
 
-/* CLOUDS */
 .clouds{
-  position:absolute;
-  bottom:-30px;
-  width:120%;
-  height:170px;
+  position:absolute;bottom:-30px;width:120%;height:170px;
   background:
   radial-gradient(circle at 20% 50%,#fff 40%,transparent 41%),
   radial-gradient(circle at 50% 50%,#fff 45%,transparent 46%),
   radial-gradient(circle at 80% 50%,#fff 40%,transparent 41%);
 }
 
-/* SECTION STYLE */
-h1{
-  text-align:center;
-  font-family:"Playfair Display",serif;
-  color:#ff5c8a;
-}
+/* CARDS */
+h1{text-align:center;font-family:"Playfair Display";color:#ff5c8a}
 .card{
-  background:#fff;
-  border-radius:28px;
-  padding:25px;
-  margin:25px 0;
+  background:#fff;border-radius:28px;
+  padding:25px;margin:25px 0;
   box-shadow:0 15px 30px rgba(255,92,138,.15);
 }
 
-/* ICON DECOR */
-.icon{
-  font-size:1.4em;
-  margin-right:6px;
-}
-
-/* GALLERY */
-.gallery{
+/* PUZZLE */
+.puzzle-board{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(8,1fr);
+  gap:4px;
+  max-width:480px;
+  margin:20px auto;
 }
-.gallery div{
-  background:linear-gradient(135deg,#ffe6f0,#fff);
-  border-radius:20px;
-  padding:40px 10px;
-  text-align:center;
+.puzzle-slot{
+  aspect-ratio:1/1;
+  background:#ffe6f0;border-radius:8px;
 }
-
-/* GAME */
-button{
-  background:linear-gradient(135deg,#ffd6e5,#ffb3c6);
-  border:none;
-  padding:10px 18px;
-  border-radius:14px;
-  cursor:pointer;
-  font-weight:600;
+.puzzle-piece{
+  aspect-ratio:1/1;
+  background-image:url("https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e");
+  background-size:800% 800%;
+  border-radius:8px;
+  cursor:grab;
 }
-.puzzle{
-  display:grid;
-  grid-template-columns:repeat(2,70px);
-  gap:18px;
-  justify-content:center;
+.puzzle-complete{
+  position:fixed;inset:0;
+  background:rgba(255,182,213,.95);
+  display:none;align-items:center;justify-content:center;
+  z-index:999;
 }
-.puzzle div{
-  width:70px;
-  height:70px;
-  background:#fff;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:1.6em;
-  cursor:pointer;
-}
-
-footer{
-  text-align:center;
-  margin-top:40px;
-  font-size:.85em;
-  color:#aa7b8c;
+.puzzle-complete img{
+  max-width:80%;
+  border-radius:30px;
+  box-shadow:0 30px 60px rgba(255,92,138,.4);
 }
 </style>
 </head>
 
 <body>
 
-<!-- FLOATING ELEMENTS -->
+<!-- FLOAT -->
 <div class="bubble-float" style="width:160px;height:160px;left:8%;top:30%"></div>
-<div class="bubble-float" style="width:110px;height:110px;right:12%;top:35%;animation-delay:2s"></div>
+<div class="bubble-float" style="width:110px;height:110px;right:12%;top:35%"></div>
 
-<!-- SPARKLES -->
 <script>
 for(let i=0;i<35;i++){
   let s=document.createElement("div");
@@ -261,7 +189,6 @@ for(let i=0;i<35;i++){
 <div class="side-menu" id="menu">
   <a onclick="openSection('about')">🐰 Chúc chúc</a>
   <a onclick="openSection('blog')">✨ Tình củm</a>
-  <a onclick="openSection('memory')">💖 Ảnh ảnh</a>
   <a onclick="openSection('game')">🎮 Gem gem</a>
   <a onclick="openSection('letter')">💌 Nhắn nhắn</a>
 </div>
@@ -281,37 +208,30 @@ for(let i=0;i<35;i++){
 
 <section id="about">
   <h1>🐰 Chúc chúc</h1>
-  <div class="card">Chúc Minh Huyền của chúng mình một sinh nhật siu zui zẻ nhee. Chúc Minh huyền thêm một tuổi mới rực rỡ. Chúc Minh huyền luôn thành công trên con đường mình đã chọn nhé. </div>
+  <div class="card">Chúc Minh Huyền sinh nhật siêu vui 💗</div>
 </section>
 
 <section id="blog">
   <h1>✨ Tình củm</h1>
-  <div class="card">Ừm thì cũng 3 năm là bạn cùng bàn mí nhau, và cũng là đứa thân nhất với t ở 3 năm cấp 3 này, t quý m lắm, t cũng bic là t phế lòi chem chép nma m lun không gì cả mà cho t chép bài, gánh t qua nhìu môn. Với cả soli vì t hơi lười lướt tíc tóc nên nhìu cái khbic'3' (nma tíc t cũng kh có hiện mấy cái đấy thiệc thề luôn). Cũng còn nhìu cái t bic ơn m lắmm. Mong m sẽ lun quan tâm và iu thưn t nhoée. ai lớp du pặc pặc  </div>
-</section>
-
-<section id="memory">
-  <h1>💖 Ảnh ảnh</h1>
-  <div class="gallery">
-    <div>📸 Ảnh 1</div><div>📸 Ảnh 2</div><div>📸 Ảnh 3</div>
-  </div>
+  <div class="card">Cảm ơn vì đã xuất hiện trong thanh xuân này 🌸</div>
 </section>
 
 <section id="game">
-  <h1>🎮 Gem gem</h1>
+  <h1>🎮 Ghép hình kỉ niệm</h1>
   <div class="card">
-    <h3>Ai hiểu chúng mình nhất?</h3>
-    <button onclick="quiz(true)">Luôn bên nhau</button><br>
-    <button onclick="quiz(false)">Hay giận dỗi</button>
-    <p id="quizResult"></p>
+    <div class="puzzle-board" id="puzzleBoard"></div>
   </div>
 </section>
 
 <section id="letter">
   <h1>💌 Nhắn nhắn</h1>
-  <div class="card">Mong Min Huỳn của chúng mình sẽ luôn cảm thông cho những lũi lầm của Thanh Mịn nhóe. Và ước gì chúng mình sẽ chơi với nhau thiệc là bền lâuu. Cảm ơn vì đã xuất hiện trong thanh xuân của tớ. Iu Minh Huyền lắm lắm lắm lắmmm🌸</div>
+  <div class="card">Iu thương thiệt nhiều 💖</div>
 </section>
 
-<footer>✨ Chúng mình yêu thương ✨</footer>
+</div>
+
+<div class="puzzle-complete" id="puzzleComplete">
+  <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e">
 </div>
 
 <script>
@@ -324,13 +244,42 @@ function openSection(id){
 function goHome(){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   home.classList.add("active");
-  menu.classList.remove("active");
 }
-function quiz(c){
-  quizResult.innerText=c?"💖 Đúng rồi~":"🥲 Nhưng vẫn thương~";
+
+const board=document.getElementById("puzzleBoard");
+const complete=document.getElementById("puzzleComplete");
+const size=8;let done=0;
+
+for(let i=0;i<64;i++){
+  const slot=document.createElement("div");
+  slot.className="puzzle-slot";
+  slot.dataset.pos=i;
+  slot.ondragover=e=>e.preventDefault();
+  slot.ondrop=e=>{
+    const p=e.dataTransfer.getData("pos");
+    if(p==i&&!slot.firstChild){
+      slot.appendChild(document.querySelector(`[data-piece='${p}']`));
+      done++;
+      if(done===64) complete.style.display="flex";
+    }
+  };
+  board.appendChild(slot);
 }
+
+let pieces=[];
+for(let i=0;i<64;i++){
+  const p=document.createElement("div");
+  p.className="puzzle-piece";
+  p.dataset.piece=i;
+  p.draggable=true;
+  const x=i%8,y=Math.floor(i/8);
+  p.style.backgroundPosition=`${(x/7)*100}% ${(y/7)*100}%`;
+  p.ondragstart=e=>e.dataTransfer.setData("pos",i);
+  pieces.push(p);
+}
+pieces.sort(()=>Math.random()-.5).forEach(p=>board.appendChild(p));
+complete.onclick=()=>complete.style.display="none";
 </script>
 
 </body>
 </html>
-
