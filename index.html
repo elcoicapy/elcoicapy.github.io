@@ -18,7 +18,7 @@ body{
   color:#6a3f52;
 }
 
-/* ===== DREAM DECOR ===== */
+/* ===== DREAM LAYERS ===== */
 .dream-haze{
   position:fixed;
   inset:0;
@@ -29,7 +29,7 @@ body{
   z-index:3;
   animation:hazeMove 18s ease-in-out infinite alternate;
 }
-@keyframes hazeMove{from{transform:translateY(0)}to{transform:translateY(-30px)}}
+@keyframes hazeMove{to{transform:translateY(-30px)}}
 
 .moon{
   position:fixed;
@@ -44,46 +44,45 @@ body{
   z-index:1;
 }
 
-/* ===== FLOATING ===== */
-.sparkle{
-  position:fixed;
-  width:6px;height:6px;
-  background:white;
-  border-radius:50%;
-  opacity:.8;
-  animation:sparkleMove linear infinite;
-  z-index:1;
-}
-@keyframes sparkleMove{
-  from{transform:translateY(110vh);opacity:0}
-  10%{opacity:1}
-  to{transform:translateY(-10vh);opacity:0}
-}
-
-.bubble-float{
-  position:fixed;
-  border-radius:50%;
-  background:rgba(255,255,255,.35);
-  animation:float 10s ease-in-out infinite;
-  z-index:1;
-}
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-25px)}
-}
-
-.floating-icon,.petal{
+/* ===== FLOWERS ===== */
+.petal{
   position:fixed;
   font-size:20px;
-  opacity:.35;
-  animation:petalFall linear infinite;
+  opacity:.45;
   pointer-events:none;
+  animation:petalFall linear infinite;
   z-index:2;
 }
 @keyframes petalFall{
-  from{transform:translateY(-10vh) rotate(0deg);opacity:0}
-  10%{opacity:.5}
-  to{transform:translateY(110vh) rotate(360deg);opacity:0}
+  from{transform:translateY(-10vh) translateX(0) rotate(0deg);opacity:0}
+  10%{opacity:.6}
+  to{transform:translateY(110vh) translateX(40px) rotate(360deg);opacity:0}
+}
+
+/* ===== BUBBLES ===== */
+.bubble{
+  position:fixed;
+  border-radius:50%;
+  background:rgba(255,255,255,.35);
+  animation:bubbleMove ease-in-out infinite;
+  z-index:1;
+}
+@keyframes bubbleMove{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-35px)}
+}
+
+/* ===== BUTTERFLY ===== */
+.butterfly{
+  position:fixed;
+  font-size:22px;
+  animation:fly linear infinite;
+  opacity:.6;
+  z-index:2;
+}
+@keyframes fly{
+  from{transform:translateX(-10vw) translateY(80vh) scale(.8)}
+  to{transform:translateX(110vw) translateY(-20vh) scale(1.1)}
 }
 
 /* ===== HEADER ===== */
@@ -144,6 +143,7 @@ body{
   z-index:-1;
 }
 
+/* ===== SLIDE ===== */
 section{display:none;animation:slide .6s ease}
 section.active{display:block}
 @keyframes slide{
@@ -159,11 +159,9 @@ section.active{display:block}
   display:flex;
   align-items:center;
   justify-content:center;
-  position:relative;
 }
-.home-text{text-align:center;color:#fff}
-.script{font-family:Pacifico;font-size:2.5em}
-.title{font-family:Playfair Display;font-size:3.6em}
+.script{font-family:Pacifico;font-size:2.5em;color:#fff}
+.title{font-family:Playfair Display;font-size:3.6em;color:#fff}
 
 .home-btn-main{
   margin-top:22px;
@@ -174,21 +172,17 @@ section.active{display:block}
   border:none;
   cursor:pointer;
 }
-.home-btn-main:hover{background:#ff3d75}
 
-/* ===== CARDS ===== */
-h1{text-align:center;color:#ff5c8a;text-shadow:0 4px 12px rgba(255,180,210,.35)}
+/* ===== CARD ===== */
+h1{text-align:center;color:#ff5c8a}
 .card{
   background:#fff;
   border-radius:28px;
   padding:25px;
   margin:25px 0;
   box-shadow:0 15px 30px rgba(255,92,138,.15);
-  transition:.4s;
 }
-.card:hover{transform:translateY(-6px)}
 
-/* ===== GALLERY ===== */
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
@@ -201,17 +195,6 @@ h1{text-align:center;color:#ff5c8a;text-shadow:0 4px 12px rgba(255,180,210,.35)}
   text-align:center;
 }
 
-/* ===== BUTTON ===== */
-button{
-  background:linear-gradient(135deg,#ffd6e5,#ffb3c6);
-  border:none;
-  padding:10px 18px;
-  border-radius:14px;
-  cursor:pointer;
-  font-weight:600;
-}
-button:hover{transform:scale(1.05)}
-
 footer{text-align:center;color:#aa7b8c}
 </style>
 </head>
@@ -220,9 +203,6 @@ footer{text-align:center;color:#aa7b8c}
 
 <div class="dream-haze"></div>
 <div class="moon"></div>
-
-<div class="bubble-float" style="width:160px;height:160px;left:8%;top:30%"></div>
-<div class="bubble-float" style="width:110px;height:110px;right:12%;top:35%"></div>
 
 <div class="home-btn" onclick="goHome()">Elcoi-Capy</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
@@ -239,7 +219,7 @@ footer{text-align:center;color:#aa7b8c}
 
 <section id="home" class="active">
   <div class="home-hero">
-    <div class="home-text">
+    <div style="text-align:center">
       <div class="script">Chúng mình</div>
       <div class="title">Yêu Thương</div>
       <button class="home-btn-main" onclick="toggleMenu()">Khám phá ✨</button>
@@ -247,55 +227,44 @@ footer{text-align:center;color:#aa7b8c}
   </div>
 </section>
 
-<section id="about">
-<h1>🐰 Chúc chúc</h1>
-<div class="card">Chúc Minh Huyền tuổi mới thật rực rỡ ✨</div>
-</section>
-
-<section id="blog">
-<h1>✨ Tình củm</h1>
-<div class="card">Thanh xuân của chúng mình 💗</div>
-</section>
-
-<section id="memory">
-<h1>💖 Ảnh ảnh</h1>
-<div class="gallery"><div>📸 Ảnh</div><div>📸 Ảnh</div></div>
-</section>
-
-<section id="game">
-<h1>🎮 Gem gem</h1>
-<div class="card">
-<button onclick="quiz(true)">Luôn bên nhau</button>
-<button onclick="quiz(false)">Hay giận dỗi</button>
-<p id="quizResult"></p>
-</div>
-</section>
-
-<section id="letter">
-<h1>💌 Nhắn nhắn</h1>
-<div class="card">Cảm ơn vì đã xuất hiện trong thanh xuân 🌸</div>
-</section>
+<section id="about"><h1>🐰 Chúc chúc</h1><div class="card">Một tuổi mới thật rực rỡ 🌸</div></section>
+<section id="blog"><h1>✨ Tình củm</h1><div class="card">Thanh xuân của chúng mình 💗</div></section>
+<section id="memory"><h1>💖 Ảnh ảnh</h1><div class="gallery"><div>📸</div><div>📸</div></div></section>
+<section id="game"><h1>🎮 Gem gem</h1><div class="card">Game dễ thương 🎀</div></section>
+<section id="letter"><h1>💌 Nhắn nhắn</h1><div class="card">Cảm ơn vì đã xuất hiện 🌷</div></section>
 
 <footer>✨ Chúng mình yêu thương ✨</footer>
 </div>
 
 <script>
-for(let i=0;i<30;i++){
- let s=document.createElement("div");
- s.className="sparkle";
- s.style.left=Math.random()*100+"vw";
- s.style.animationDuration=5+Math.random()*6+"s";
- document.body.appendChild(s);
-}
-
-["🌸","✨","💫","🐰","💖"].forEach(()=>{
+for(let i=0;i<22;i++){
  let p=document.createElement("div");
  p.className="petal";
- p.innerText="🌸";
+ p.innerText=["🌸","🌼","✨"][Math.floor(Math.random()*3)];
  p.style.left=Math.random()*100+"vw";
  p.style.animationDuration=15+Math.random()*10+"s";
  document.body.appendChild(p);
-});
+}
+
+for(let i=0;i<8;i++){
+ let b=document.createElement("div");
+ b.className="bubble";
+ let s=80+Math.random()*120;
+ b.style.width=b.style.height=s+"px";
+ b.style.left=Math.random()*100+"vw";
+ b.style.top=Math.random()*100+"vh";
+ b.style.animationDuration=10+Math.random()*8+"s";
+ document.body.appendChild(b);
+}
+
+for(let i=0;i<5;i++){
+ let bf=document.createElement("div");
+ bf.className="butterfly";
+ bf.innerText="🦋";
+ bf.style.animationDuration=18+Math.random()*10+"s";
+ bf.style.animationDelay=Math.random()*8+"s";
+ document.body.appendChild(bf);
+}
 
 function toggleMenu(){menu.classList.toggle("active")}
 function openSection(id){
@@ -304,7 +273,6 @@ function openSection(id){
  menu.classList.remove("active");
 }
 function goHome(){openSection("home")}
-function quiz(c){quizResult.innerText=c?"💖 Đúng rồi~":"🥲 Nhưng vẫn thương~"}
 </script>
 
 </body>
