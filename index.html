@@ -2,190 +2,139 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Elcoi & Capy</title>
+<title>Elcoi and Capy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- GOOGLE FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:"Quicksand",sans-serif;
   background:linear-gradient(180deg,#ffd6e9,#fff);
   color:#6a3f52;
   overflow-x:hidden;
-  transition:background .8s,color .6s;
-}
-
-/* 🌙 NIGHT MODE */
-body.night{
-  background:linear-gradient(180deg,#2b1b33,#1a1322);
-  color:#f4cbe0;
-}
-
-/* ===== TOGGLE BUTTON ===== */
-.night-toggle{
-  position:fixed;
-  top:18px;
-  right:70px;
-  font-size:24px;
-  cursor:pointer;
-  z-index:60;
-  transition:.4s;
-}
-body.night .night-toggle{color:#ffd1e8}
-
-/* ===== DREAM LAYERS ===== */
-.dream-haze{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 20% 30%,rgba(255,255,255,.35),transparent 40%),
-    radial-gradient(circle at 80% 70%,rgba(255,255,255,.25),transparent 45%);
-  pointer-events:none;
-  z-index:3;
-  animation:hazeMove 18s ease-in-out infinite alternate;
-}
-body.night .dream-haze{
-  background:
-    radial-gradient(circle at 30% 40%,rgba(255,220,240,.25),transparent 45%),
-    radial-gradient(circle at 70% 70%,rgba(200,180,255,.15),transparent 50%);
-}
-@keyframes hazeMove{to{transform:translateY(-30px)}}
-
-/* ===== MOON ===== */
-.moon{
-  position:fixed;
-  width:170px;
-  height:170px;
-  border-radius:50%;
-  background:radial-gradient(circle,#fff,#ffd6e9 70%);
-  top:80px;
-  left:-60px;
-  opacity:.35;
-  filter:blur(2px);
-  z-index:1;
   transition:.8s;
 }
-body.night .moon{
-  background:radial-gradient(circle,#fff,#cbb6ff 70%);
-  opacity:.6;
+
+/* NIGHT MODE */
+body.night{
+  background:linear-gradient(180deg,#1a1026,#0b0612);
+  color:#ffe6f0;
 }
 
-/* ===== PETALS ===== */
-.petal{
+/* ===== DECOR ===== */
+.sparkle,.petal,.bubble,.butterfly{
   position:fixed;
-  font-size:20px;
-  opacity:.4;
   pointer-events:none;
-  animation:petalFall linear infinite;
-  z-index:2;
-}
-body.night .petal{opacity:.25}
-@keyframes petalFall{
-  from{transform:translateY(-10vh) rotate(0deg);opacity:0}
-  10%{opacity:.6}
-  to{transform:translateY(110vh) rotate(360deg);opacity:0}
-}
-
-/* ===== BUBBLES ===== */
-.bubble{
-  position:fixed;
-  border-radius:50%;
-  background:rgba(255,255,255,.35);
-  animation:bubbleMove ease-in-out infinite;
   z-index:1;
 }
-body.night .bubble{
-  background:rgba(200,180,255,.18);
+
+/* Sparkle */
+.sparkle{
+  width:5px;height:5px;
+  background:white;
+  border-radius:50%;
+  animation:spark 6s linear infinite;
 }
-@keyframes bubbleMove{
+@keyframes spark{
+  from{transform:translateY(110vh);opacity:0}
+  10%{opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
+}
+
+/* Petal */
+.petal{
+  font-size:20px;
+  animation:fall 12s linear infinite;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh) rotate(0deg)}
+  to{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* Bubble */
+.bubble{
+  width:80px;height:80px;
+  background:rgba(255,255,255,.25);
+  border-radius:50%;
+  animation:float 10s ease-in-out infinite;
+}
+@keyframes float{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-35px)}
+  50%{transform:translateY(-30px)}
 }
 
-/* ===== BUTTERFLY ===== */
+/* Butterfly */
 .butterfly{
-  position:fixed;
-  font-size:22px;
-  animation:fly linear infinite;
-  opacity:.6;
-  z-index:2;
+  font-size:26px;
+  animation:fly 14s linear infinite;
 }
-body.night .butterfly{opacity:.35}
 @keyframes fly{
-  from{transform:translateX(-10vw) translateY(80vh)}
-  to{transform:translateX(110vw) translateY(-20vh)}
+  from{transform:translateX(-10vw)}
+  to{transform:translateX(110vw)}
 }
 
-/* ===== HEADER ===== */
-.home-btn,.menu-btn{
+/* ===== TOP ===== */
+.home-btn,.menu-btn,.night-btn{
   position:fixed;
   top:16px;
   z-index:50;
-  color:#ff5c8a;
   cursor:pointer;
+  font-weight:600;
+  color:#ff5c8a;
 }
-body.night .home-btn,
-body.night .menu-btn{color:#ffd1e8}
-
 .home-btn{left:20px}
-.menu-btn{right:20px;font-size:28px}
+.menu-btn{right:20px;font-size:26px}
+.night-btn{right:60px;font-size:22px}
 
 /* ===== MENU ===== */
 .side-menu{
   position:fixed;
-  top:0;
-  right:-280px;
-  width:270px;
-  height:100%;
+  top:0;right:-280px;
+  width:260px;height:100%;
   background:#fff;
   padding-top:90px;
   transition:.4s;
   z-index:40;
   border-radius:30px 0 0 30px;
 }
-body.night .side-menu{
-  background:#2b1b33;
-}
+body.night .side-menu{background:#1c112b}
 .side-menu.active{right:0}
 .side-menu a{
   display:block;
   padding:16px 30px;
   color:#ff5c8a;
-  font-weight:600;
   text-decoration:none;
+  font-weight:600;
 }
-body.night .side-menu a{color:#ffd1e8}
 
-/* ===== CONTENT ===== */
+/* ===== CONTAINER ===== */
 .container{
-  max-width:950px;
-  margin:110px auto 50px;
+  max-width:900px;
+  margin:110px auto 60px;
   background:rgba(255,255,255,.75);
   backdrop-filter:blur(8px);
   border-radius:40px;
   padding:45px;
-  box-shadow:0 35px 70px rgba(255,92,138,.25);
   position:relative;
   z-index:10;
 }
 body.night .container{
-  background:rgba(40,25,55,.75);
-  box-shadow:0 35px 70px rgba(180,150,255,.25);
+  background:rgba(40,20,60,.65);
 }
 
-/* ===== SLIDE ===== */
-section{display:none;animation:slide .6s ease}
+/* ===== SECTIONS ===== */
+section{display:none;animation:slide .6s}
 section.active{display:block}
 @keyframes slide{
-  from{opacity:0;transform:translateX(40px) scale(.96);filter:blur(4px)}
-  to{opacity:1;transform:none;filter:none}
+  from{opacity:0;transform:translateX(40px)}
+  to{opacity:1}
 }
 
-/* ===== HOME ===== */
+/* HOME */
 .home-hero{
   height:420px;
   border-radius:35px;
@@ -195,34 +144,56 @@ section.active{display:block}
   justify-content:center;
 }
 body.night .home-hero{
-  background:linear-gradient(180deg,#3a2350,#1a1322);
+  background:linear-gradient(180deg,#3a1b5a,#12091c);
 }
-.script{font-family:Pacifico;font-size:2.5em;color:#fff}
-.title{font-family:Playfair Display;font-size:3.6em;color:#fff}
+.home-text{text-align:center;color:#fff}
+.home-text .script{
+  font-family:"Pacifico";
+  font-size:2.4em;
+}
+.home-text .title{
+  font-family:"Playfair Display";
+  font-size:3.4em;
+}
 
+/* CARD */
 .card{
   background:#fff;
-  border-radius:28px;
+  border-radius:26px;
   padding:25px;
   margin:25px 0;
 }
 body.night .card{
-  background:#2b1b33;
+  background:#221236;
+  color:#ffe6f0;
 }
 
-footer{text-align:center;color:#aa7b8c}
-body.night footer{color:#cbb6ff}
+/* LETTER SWITCH */
+.day-letter{display:block}
+.night-letter{display:none}
+body.night .day-letter{display:none}
+body.night .night-letter{display:block}
+
+/* FOOTER */
+footer{text-align:center;font-size:.85em}
+
+/* BUTTON */
+button{
+  background:#ff5c8a;
+  color:white;
+  border:none;
+  padding:10px 22px;
+  border-radius:20px;
+  cursor:pointer;
+}
 </style>
 </head>
 
 <body>
 
-<div class="dream-haze"></div>
-<div class="moon"></div>
-
 <div class="home-btn" onclick="goHome()">Elcoi-Capy</div>
+<div class="night-btn" onclick="toggleNight()">🌙</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
-<div class="night-toggle" onclick="toggleNight()">🌙</div>
 
 <div class="side-menu" id="menu">
   <a onclick="openSection('about')">🐰 Chúc chúc</a>
@@ -235,61 +206,94 @@ body.night footer{color:#cbb6ff}
 
 <section id="home" class="active">
   <div class="home-hero">
-    <div style="text-align:center">
+    <div class="home-text">
       <div class="script">Chúng mình</div>
       <div class="title">Yêu Thương</div>
+      <button onclick="toggleMenu()">Khám phá ✨</button>
     </div>
   </div>
 </section>
 
-<section id="about"><h1>🐰 Chúc chúc</h1><div class="card">Một tuổi mới thật rực rỡ 🌸</div></section>
-<section id="blog"><h1>✨ Tình củm</h1><div class="card">Thanh xuân dịu dàng 💗</div></section>
-<section id="memory"><h1>💖 Ảnh ảnh</h1><div class="card">Kỉ niệm 🌙</div></section>
-<section id="letter"><h1>💌 Nhắn nhắn</h1><div class="card">Đọc vào ban đêm rất hợp 💭</div></section>
+<section id="about">
+  <h1>🐰 Chúc chúc</h1>
+  <div class="card">Chúc Minh Huyền luôn vui và rực rỡ 🌸</div>
+</section>
+
+<section id="blog">
+  <h1>✨ Tình củm</h1>
+  <div class="card">Thanh xuân của tớ có cậu 💗</div>
+</section>
+
+<section id="memory">
+  <h1>💖 Ảnh ảnh</h1>
+  <div class="card">📸 (sẽ thêm ảnh sau)</div>
+</section>
+
+<section id="letter">
+  <h1>💌 Nhắn nhắn</h1>
+
+  <div class="card day-letter">
+    <h3>☀️ Thư ban ngày</h3>
+    Cảm ơn vì đã ở cạnh tớ mỗi ngày 🌷
+  </div>
+
+  <div class="card night-letter">
+    <h3>🌙 Thư ban đêm</h3>
+    Chỉ ban đêm tớ mới dám nói…<br>
+    Thanh xuân này, tớ rất trân trọng cậu 💗
+  </div>
+</section>
 
 <footer>✨ Chúng mình yêu thương ✨</footer>
 </div>
 
 <script>
-/* DECOR */
-for(let i=0;i<18;i++){
- let p=document.createElement("div");
- p.className="petal";
- p.innerText=["🌸","✨","💫"][Math.floor(Math.random()*3)];
- p.style.left=Math.random()*100+"vw";
- p.style.animationDuration=16+Math.random()*10+"s";
- document.body.appendChild(p);
-}
-for(let i=0;i<8;i++){
- let b=document.createElement("div");
- b.className="bubble";
- let s=80+Math.random()*120;
- b.style.width=b.style.height=s+"px";
- b.style.left=Math.random()*100+"vw";
- b.style.top=Math.random()*100+"vh";
- b.style.animationDuration=10+Math.random()*8+"s";
- document.body.appendChild(b);
-}
-for(let i=0;i<4;i++){
- let bf=document.createElement("div");
- bf.className="butterfly";
- bf.innerText="🦋";
- bf.style.animationDuration=18+Math.random()*10+"s";
- document.body.appendChild(bf);
-}
-
-/* ACTION */
+/* MENU */
 function toggleMenu(){menu.classList.toggle("active")}
 function openSection(id){
- document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- menu.classList.remove("active");
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  menu.classList.remove("active");
 }
-function goHome(){openSection("home")}
+function goHome(){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  home.classList.add("active");
+}
+
+/* NIGHT */
 function toggleNight(){
- document.body.classList.toggle("night");
- document.querySelector(".night-toggle").innerText=
-  document.body.classList.contains("night")?"☀️":"🌙";
+  document.body.classList.toggle("night");
+}
+
+/* DECOR GENERATE */
+for(let i=0;i<30;i++){
+  let s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDelay=Math.random()*6+"s";
+  document.body.appendChild(s);
+
+  let p=document.createElement("div");
+  p.className="petal";
+  p.innerText="🌸";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDelay=Math.random()*10+"s";
+  document.body.appendChild(p);
+}
+
+for(let i=0;i<6;i++){
+  let b=document.createElement("div");
+  b.className="bubble";
+  b.style.left=Math.random()*100+"vw";
+  b.style.top=Math.random()*100+"vh";
+  document.body.appendChild(b);
+
+  let bf=document.createElement("div");
+  bf.className="butterfly";
+  bf.innerText="🦋";
+  bf.style.top=Math.random()*80+"vh";
+  bf.style.animationDelay=Math.random()*10+"s";
+  document.body.appendChild(bf);
 }
 </script>
 
