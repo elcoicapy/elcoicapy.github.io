@@ -10,7 +10,6 @@
 
 <style>
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:"Quicksand",sans-serif;
@@ -20,26 +19,47 @@ body{
   transition:.8s;
 }
 
-/* ===== NIGHT DREAM ===== */
+/* NIGHT DREAM */
 body.night{
   background:linear-gradient(180deg,#1b1026,#0b0612);
   color:#ffe6f0;
 }
 
-/* ===== SPARKLE ===== */
-.sparkle{
+/* ===== FLOAT ICON ===== */
+.float-icon{
   position:fixed;
-  width:6px;height:6px;
-  background:white;
-  border-radius:50%;
-  opacity:.8;
-  animation:sparkleMove linear infinite;
+  font-size:22px;
+  animation:iconFloat linear infinite;
+  opacity:.85;
   z-index:1;
 }
-@keyframes sparkleMove{
-  from{transform:translateY(110vh);opacity:0}
-  10%{opacity:1}
-  to{transform:translateY(-10vh);opacity:0}
+@keyframes iconFloat{
+  from{transform:translateY(110vh) rotate(0deg)}
+  to{transform:translateY(-10vh) rotate(360deg)}
+}
+
+/* ===== PETAL ===== */
+.petal{
+  position:fixed;
+  font-size:20px;
+  animation:petalFall linear infinite;
+  z-index:1;
+}
+@keyframes petalFall{
+  from{transform:translateY(-10vh) rotate(0deg)}
+  to{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* ===== BUTTERFLY ===== */
+.butterfly{
+  position:fixed;
+  font-size:26px;
+  animation:fly linear infinite;
+  z-index:1;
+}
+@keyframes fly{
+  from{transform:translateX(-10vw)}
+  to{transform:translateX(110vw)}
 }
 
 /* ===== BUBBLE ===== */
@@ -55,7 +75,7 @@ body.night{
   50%{transform:translateY(-25px)}
 }
 
-/* ===== TOP BUTTON ===== */
+/* ===== TOP ===== */
 .home-btn,.menu-btn,.night-btn{
   position:fixed;
   top:16px;
@@ -88,7 +108,6 @@ body.night .side-menu{background:#1c112b}
   font-weight:600;
   text-decoration:none;
 }
-.side-menu a:hover{background:#ffe6f0}
 
 /* ===== CONTAINER ===== */
 .container{
@@ -105,8 +124,8 @@ body.night .container{
   background:rgba(40,20,60,.65);
 }
 
-/* ===== SECTION ===== */
-section{display:none;animation:slide .6s ease}
+/* ===== SECTIONS ===== */
+section{display:none;animation:slide .6s}
 section.active{display:block}
 @keyframes slide{
   from{opacity:0;transform:translateX(40px)}
@@ -147,16 +166,12 @@ body.night .card{
   color:#ffe6f0;
 }
 
-/* ===== LETTER SWITCH ===== */
+/* LETTER SWITCH */
 .day-letter{display:block}
 .night-letter{display:none}
 body.night .day-letter{display:none}
 body.night .night-letter{display:block}
 
-/* ===== FOOTER ===== */
-footer{text-align:center;font-size:.85em}
-
-/* ===== BUTTON ===== */
 button{
   background:#ff5c8a;
   color:white;
@@ -165,26 +180,46 @@ button{
   border-radius:20px;
   cursor:pointer;
 }
+
+footer{text-align:center;font-size:.85em}
 </style>
 </head>
 
 <body>
 
-<!-- DECOR -->
+<!-- DECOR GENERATE -->
 <script>
-for(let i=0;i<35;i++){
-  let s=document.createElement("div");
-  s.className="sparkle";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDuration=5+Math.random()*6+"s";
-  s.style.animationDelay=Math.random()*5+"s";
-  document.body.appendChild(s);
+const icons=["⭐","💖","🐰","🌸","✨"];
+for(let i=0;i<20;i++){
+  let ic=document.createElement("div");
+  ic.className="float-icon";
+  ic.innerText=icons[Math.floor(Math.random()*icons.length)];
+  ic.style.left=Math.random()*100+"vw";
+  ic.style.animationDuration=6+Math.random()*8+"s";
+  document.body.appendChild(ic);
+}
+for(let i=0;i<15;i++){
+  let p=document.createElement("div");
+  p.className="petal";
+  p.innerText="🌸";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=10+Math.random()*10+"s";
+  document.body.appendChild(p);
 }
 for(let i=0;i<6;i++){
+  let bf=document.createElement("div");
+  bf.className="butterfly";
+  bf.innerText="🦋";
+  bf.style.top=Math.random()*80+"vh";
+  bf.style.animationDuration=12+Math.random()*10+"s";
+  document.body.appendChild(bf);
+}
+for(let i=0;i<8;i++){
   let b=document.createElement("div");
   b.className="bubble";
-  b.style.width=80+Math.random()*120+"px";
-  b.style.height=b.style.width;
+  let size=80+Math.random()*120;
+  b.style.width=size+"px";
+  b.style.height=size+"px";
   b.style.left=Math.random()*100+"vw";
   b.style.top=Math.random()*100+"vh";
   document.body.appendChild(b);
@@ -214,33 +249,13 @@ for(let i=0;i<6;i++){
   </div>
 </section>
 
-<section id="about">
-  <h1>🐰 Chúc chúc</h1>
-  <div class="card">Chúc Minh Huyền luôn vui và rực rỡ 🌸</div>
-</section>
-
-<section id="blog">
-  <h1>✨ Tình củm</h1>
-  <div class="card">Thanh xuân của tớ có cậu 💗</div>
-</section>
-
-<section id="memory">
-  <h1>💖 Ảnh ảnh</h1>
-  <div class="card">📸 Sẽ thêm ảnh sau nha</div>
-</section>
-
 <section id="letter">
   <h1>💌 Nhắn nhắn</h1>
-
   <div class="card day-letter">
-    <h3>☀️ Thư ban ngày</h3>
-    Cảm ơn vì đã ở cạnh tớ mỗi ngày 🌷
+    ☀️ Ban ngày: Cảm ơn vì đã ở cạnh tớ 🌷
   </div>
-
   <div class="card night-letter">
-    <h3>🌙 Thư ban đêm</h3>
-    Có những điều chỉ ban đêm mới dám nói…  
-    Tớ rất trân trọng cậu 💗
+    🌙 Ban đêm: Thanh xuân này tớ rất trân trọng cậu 💗
   </div>
 </section>
 
@@ -265,3 +280,4 @@ function toggleNight(){
 
 </body>
 </html>
+
