@@ -10,6 +10,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:"Quicksand",sans-serif;
@@ -19,65 +20,42 @@ body{
   transition:.8s;
 }
 
-/* NIGHT MODE */
+/* ===== NIGHT DREAM ===== */
 body.night{
-  background:linear-gradient(180deg,#1a1026,#0b0612);
+  background:linear-gradient(180deg,#1b1026,#0b0612);
   color:#ffe6f0;
 }
 
-/* ===== DECOR ===== */
-.sparkle,.petal,.bubble,.butterfly{
-  position:fixed;
-  pointer-events:none;
-  z-index:1;
-}
-
-/* Sparkle */
+/* ===== SPARKLE ===== */
 .sparkle{
-  width:5px;height:5px;
+  position:fixed;
+  width:6px;height:6px;
   background:white;
   border-radius:50%;
-  animation:spark 6s linear infinite;
+  opacity:.8;
+  animation:sparkleMove linear infinite;
+  z-index:1;
 }
-@keyframes spark{
+@keyframes sparkleMove{
   from{transform:translateY(110vh);opacity:0}
   10%{opacity:1}
   to{transform:translateY(-10vh);opacity:0}
 }
 
-/* Petal */
-.petal{
-  font-size:20px;
-  animation:fall 12s linear infinite;
-}
-@keyframes fall{
-  from{transform:translateY(-10vh) rotate(0deg)}
-  to{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* Bubble */
+/* ===== BUBBLE ===== */
 .bubble{
-  width:80px;height:80px;
-  background:rgba(255,255,255,.25);
+  position:fixed;
   border-radius:50%;
+  background:rgba(255,255,255,.35);
   animation:float 10s ease-in-out infinite;
+  z-index:1;
 }
 @keyframes float{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-30px)}
+  50%{transform:translateY(-25px)}
 }
 
-/* Butterfly */
-.butterfly{
-  font-size:26px;
-  animation:fly 14s linear infinite;
-}
-@keyframes fly{
-  from{transform:translateX(-10vw)}
-  to{transform:translateX(110vw)}
-}
-
-/* ===== TOP ===== */
+/* ===== TOP BUTTON ===== */
 .home-btn,.menu-btn,.night-btn{
   position:fixed;
   top:16px;
@@ -107,9 +85,10 @@ body.night .side-menu{background:#1c112b}
   display:block;
   padding:16px 30px;
   color:#ff5c8a;
-  text-decoration:none;
   font-weight:600;
+  text-decoration:none;
 }
+.side-menu a:hover{background:#ffe6f0}
 
 /* ===== CONTAINER ===== */
 .container{
@@ -126,15 +105,15 @@ body.night .container{
   background:rgba(40,20,60,.65);
 }
 
-/* ===== SECTIONS ===== */
-section{display:none;animation:slide .6s}
+/* ===== SECTION ===== */
+section{display:none;animation:slide .6s ease}
 section.active{display:block}
 @keyframes slide{
   from{opacity:0;transform:translateX(40px)}
   to{opacity:1}
 }
 
-/* HOME */
+/* ===== HOME ===== */
 .home-hero{
   height:420px;
   border-radius:35px;
@@ -156,7 +135,7 @@ body.night .home-hero{
   font-size:3.4em;
 }
 
-/* CARD */
+/* ===== CARD ===== */
 .card{
   background:#fff;
   border-radius:26px;
@@ -168,16 +147,16 @@ body.night .card{
   color:#ffe6f0;
 }
 
-/* LETTER SWITCH */
+/* ===== LETTER SWITCH ===== */
 .day-letter{display:block}
 .night-letter{display:none}
 body.night .day-letter{display:none}
 body.night .night-letter{display:block}
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer{text-align:center;font-size:.85em}
 
-/* BUTTON */
+/* ===== BUTTON ===== */
 button{
   background:#ff5c8a;
   color:white;
@@ -190,6 +169,27 @@ button{
 </head>
 
 <body>
+
+<!-- DECOR -->
+<script>
+for(let i=0;i<35;i++){
+  let s=document.createElement("div");
+  s.className="sparkle";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=5+Math.random()*6+"s";
+  s.style.animationDelay=Math.random()*5+"s";
+  document.body.appendChild(s);
+}
+for(let i=0;i<6;i++){
+  let b=document.createElement("div");
+  b.className="bubble";
+  b.style.width=80+Math.random()*120+"px";
+  b.style.height=b.style.width;
+  b.style.left=Math.random()*100+"vw";
+  b.style.top=Math.random()*100+"vh";
+  document.body.appendChild(b);
+}
+</script>
 
 <div class="home-btn" onclick="goHome()">Elcoi-Capy</div>
 <div class="night-btn" onclick="toggleNight()">🌙</div>
@@ -226,7 +226,7 @@ button{
 
 <section id="memory">
   <h1>💖 Ảnh ảnh</h1>
-  <div class="card">📸 (sẽ thêm ảnh sau)</div>
+  <div class="card">📸 Sẽ thêm ảnh sau nha</div>
 </section>
 
 <section id="letter">
@@ -239,8 +239,8 @@ button{
 
   <div class="card night-letter">
     <h3>🌙 Thư ban đêm</h3>
-    Chỉ ban đêm tớ mới dám nói…<br>
-    Thanh xuân này, tớ rất trân trọng cậu 💗
+    Có những điều chỉ ban đêm mới dám nói…  
+    Tớ rất trân trọng cậu 💗
   </div>
 </section>
 
@@ -248,7 +248,6 @@ button{
 </div>
 
 <script>
-/* MENU */
 function toggleMenu(){menu.classList.toggle("active")}
 function openSection(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
@@ -259,41 +258,8 @@ function goHome(){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   home.classList.add("active");
 }
-
-/* NIGHT */
 function toggleNight(){
   document.body.classList.toggle("night");
-}
-
-/* DECOR GENERATE */
-for(let i=0;i<30;i++){
-  let s=document.createElement("div");
-  s.className="sparkle";
-  s.style.left=Math.random()*100+"vw";
-  s.style.animationDelay=Math.random()*6+"s";
-  document.body.appendChild(s);
-
-  let p=document.createElement("div");
-  p.className="petal";
-  p.innerText="🌸";
-  p.style.left=Math.random()*100+"vw";
-  p.style.animationDelay=Math.random()*10+"s";
-  document.body.appendChild(p);
-}
-
-for(let i=0;i<6;i++){
-  let b=document.createElement("div");
-  b.className="bubble";
-  b.style.left=Math.random()*100+"vw";
-  b.style.top=Math.random()*100+"vh";
-  document.body.appendChild(b);
-
-  let bf=document.createElement("div");
-  bf.className="butterfly";
-  bf.innerText="🦋";
-  bf.style.top=Math.random()*80+"vh";
-  bf.style.animationDelay=Math.random()*10+"s";
-  document.body.appendChild(bf);
 }
 </script>
 
