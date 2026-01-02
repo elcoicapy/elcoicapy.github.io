@@ -25,16 +25,18 @@ body.night{
 /* ===== FLOAT ICON ===== */
 .float-icon{
   position:fixed;
-  font-size:24px;
-  opacity:.85;
+  font-size:26px;
+  opacity:.35;              /* NHẠT HƠN */
   pointer-events:none;
-  z-index:1;
+  z-index:2;
+  filter: blur(.2px);
 }
 
 /* ===== PETAL ===== */
 .petal{
   position:fixed;
-  font-size:20px;
+  font-size:18px;
+  opacity:.4;
   z-index:1;
   animation:petalFall linear infinite;
 }
@@ -47,25 +49,26 @@ body.night{
 .butterfly{
   position:fixed;
   font-size:28px;
-  z-index:1;
+  opacity:.45;
+  pointer-events:none;
 }
 
 /* ===== BUBBLE ===== */
 .bubble{
   position:fixed;
   border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9),rgba(255,255,255,.2));
-  opacity:.45;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),rgba(255,255,255,.15));
+  opacity:.35;
   animation:bubbleMove ease-in-out infinite;
   z-index:0;
 }
 @keyframes bubbleMove{
   0%{transform:translate(0,0)}
-  50%{transform:translate(40px,-50px)}
-  100%{transform:translate(-30px,30px)}
+  50%{transform:translate(50px,-60px)}
+  100%{transform:translate(-40px,40px)}
 }
 
-/* ===== TOP BUTTONS ===== */
+/* ===== UI ===== */
 .home-btn,.menu-btn,.night-btn{
   position:fixed;
   top:16px;
@@ -78,7 +81,6 @@ body.night{
 .menu-btn{right:20px;font-size:26px}
 .night-btn{right:60px;font-size:22px}
 
-/* ===== SIDE MENU ===== */
 .side-menu{
   position:fixed;
   top:0;
@@ -90,7 +92,6 @@ body.night{
   transition:.4s;
   z-index:45;
   border-radius:30px 0 0 30px;
-  box-shadow:-10px 0 30px rgba(255,92,138,.25);
 }
 .side-menu.active{right:0}
 .side-menu a{
@@ -100,10 +101,7 @@ body.night{
   font-weight:600;
   text-decoration:none;
 }
-.side-menu a:hover{background:#ffe6f0}
-body.night .side-menu{background:#1f1430}
 
-/* ===== CONTAINER ===== */
 .container{
   max-width:900px;
   margin:120px auto;
@@ -114,12 +112,10 @@ body.night .side-menu{background:#1f1430}
   position:relative;
   z-index:10;
 }
-body.night .container{background:rgba(40,20,60,.6)}
 
 section{display:none}
 section.active{display:block}
 
-/* ===== HERO ===== */
 .hero{
   height:420px;
   border-radius:35px;
@@ -128,38 +124,24 @@ section.active{display:block}
   align-items:center;
   justify-content:center;
 }
-body.night .hero{
-  background:linear-gradient(180deg,#3a1b5a,#12091c);
-}
-.hero-text{
-  text-align:center;
-  color:white;
-}
-.hero-text h1{
+.hero h1{
   font-family:"Pacifico";
   font-size:3em;
+  color:white;
 }
 
-/* ===== CARD ===== */
 .card{
   background:#fff;
   border-radius:25px;
   padding:25px;
   margin-top:25px;
 }
-body.night .card{background:#221236}
-
-/* ===== LETTER ===== */
-.day-letter{display:block}
-.night-letter{display:none}
-body.night .day-letter{display:none}
-body.night .night-letter{display:block}
 </style>
 </head>
 
 <body>
 
-<!-- ===== FLOATING DREAM EFFECTS ===== -->
+<!-- ===== DREAM ICON ENGINE ===== -->
 <script>
 const ICONS = [
   {char:"🦋", flap:true},
@@ -170,56 +152,51 @@ const ICONS = [
   {char:"🐰"}
 ];
 
-function createDreamIcon(icon){
+function spawnIcon(icon){
   const el=document.createElement("div");
   el.className="float-icon";
   el.innerText=icon.char;
   document.body.appendChild(el);
 
-  const side=Math.floor(Math.random()*4);
-  let x,y,vx,vy;
+  let x=Math.random()*innerWidth;
+  let y=Math.random()*innerHeight;
 
-  if(side===0){x=Math.random()*innerWidth;y=-60;vx=(Math.random()-.5)*0.4;vy=0.4+Math.random()*0.6;}
-  if(side===1){x=Math.random()*innerWidth;y=innerHeight+60;vx=(Math.random()-.5)*0.4;vy=-(0.4+Math.random()*0.6);}
-  if(side===2){x=-60;y=Math.random()*innerHeight;vx=0.4+Math.random()*0.6;vy=(Math.random()-.5)*0.4;}
-  if(side===3){x=innerWidth+60;y=Math.random()*innerHeight;vx=-(0.4+Math.random()*0.6);vy=(Math.random()-.5)*0.4;}
+  let vx=(Math.random()-.5)*0.25;
+  let vy=(Math.random()-.5)*0.25;
 
   let angle=Math.random()*Math.PI*2;
-  let wave=20+Math.random()*30;
-  let waveSpeed=0.01+Math.random()*0.02;
-  let rotate=Math.random()*360;
-  let rotateSpeed=(Math.random()-.5)*0.3;
+  let wave=30+Math.random()*40;
+  let waveSpeed=0.008+Math.random()*0.01;
+
   let flap=0;
 
   function animate(){
     angle+=waveSpeed;
     x+=vx;
     y+=vy;
-    rotate+=rotateSpeed;
+
+    if(x<0||x>innerWidth) vx*=-1;
+    if(y<0||y>innerHeight) vy*=-1;
 
     let scale=1;
-    if(icon.flap){flap+=0.15;scale=1+Math.sin(flap)*0.18;}
+    if(icon.flap){
+      flap+=0.12;
+      scale=1+Math.sin(flap)*0.2;
+    }
 
     el.style.transform=`
-      translate(${x+Math.sin(angle)*wave}px,${y+Math.cos(angle*0.8)*wave}px)
-      rotate(${rotate}deg)
+      translate(${x+Math.sin(angle)*wave}px,${y+Math.cos(angle)*wave}px)
       scale(${scale})
     `;
-
-    if(x<-120||x>innerWidth+120||y<-120||y>innerHeight+120){
-      el.remove();
-      setTimeout(()=>createDreamIcon(icon),Math.random()*2000);
-      return;
-    }
     requestAnimationFrame(animate);
   }
   animate();
 }
 
 ICONS.forEach(icon=>{
-  let count=icon.flap?5:6;
+  let count=icon.flap?6:8;
   for(let i=0;i<count;i++){
-    setTimeout(()=>createDreamIcon(icon),Math.random()*4000);
+    setTimeout(()=>spawnIcon(icon),Math.random()*3000);
   }
 });
 
@@ -229,31 +206,31 @@ for(let i=0;i<14;i++){
   p.className="petal";
   p.innerText="🌸";
   p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=10+Math.random()*10+"s";
-  p.style.animationDelay=Math.random()*5+"s";
+  p.style.animationDuration=12+Math.random()*10+"s";
+  p.style.animationDelay=Math.random()*6+"s";
   document.body.appendChild(p);
 }
 
 /* BUBBLES */
-for(let i=0;i<8;i++){
+for(let i=0;i<7;i++){
   let b=document.createElement("div");
   b.className="bubble";
-  let size=220+Math.random()*200;
+  let size=240+Math.random()*220;
   b.style.width=size+"px";
   b.style.height=size+"px";
   b.style.left=Math.random()*100+"vw";
   b.style.top=Math.random()*100+"vh";
-  b.style.animationDuration=14+Math.random()*10+"s";
+  b.style.animationDuration=16+Math.random()*12+"s";
   document.body.appendChild(b);
 }
 </script>
 
-<!-- ===== UI ===== -->
 <div class="home-btn" onclick="goHome()">Trang chủ</div>
 <div class="night-btn" onclick="toggleNight()">🌙</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <div class="side-menu" id="menu">
+  <a onclick="openSection('home')">🏠 Trang chủ</a>
   <a onclick="openSection('about')">🐰 Chúc chúc</a>
   <a onclick="openSection('blog')">✨ Tình củm</a>
   <a onclick="openSection('memory')">💖 Ảnh ảnh</a>
@@ -262,26 +239,14 @@ for(let i=0;i<8;i++){
 </div>
 
 <div class="container">
-
 <section id="home" class="active">
-  <div class="hero">
-    <div class="hero-text">
-      <h1>Chúng mình</h1>
-      <p>Những điều bé xíu nhưng ở mãi ✨</p>
-    </div>
-  </div>
+  <div class="hero"><h1>Chúng mình</h1></div>
 </section>
-
-<section id="about"><div class="card">🐰 Chúc chúc dễ thương.</div></section>
-<section id="blog"><div class="card">✨ Tình củm thanh xuân.</div></section>
-<section id="memory"><div class="card">💖 Ảnh kỉ niệm.</div></section>
-<section id="game"><div class="card">🎮 Game xếp hình sẽ thêm sau.</div></section>
-
-<section id="letter">
-  <div class="card day-letter">☀️ Thư ban ngày.</div>
-  <div class="card night-letter">🌙 Thư ban đêm – chỉ mở khi Night Dream.</div>
-</section>
-
+<section id="about"><div class="card">🐰 Chúc chúc</div></section>
+<section id="blog"><div class="card">✨ Tình củm</div></section>
+<section id="memory"><div class="card">💖 Ảnh ảnh</div></section>
+<section id="game"><div class="card">🎮 Game</div></section>
+<section id="letter"><div class="card">💌 Thư</div></section>
 </div>
 
 <script>
@@ -291,10 +256,7 @@ function openSection(id){
   document.getElementById(id).classList.add("active");
   menu.classList.remove("active");
 }
-function goHome(){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  home.classList.add("active");
-}
+function goHome(){openSection("home")}
 function toggleNight(){document.body.classList.toggle("night")}
 </script>
 
