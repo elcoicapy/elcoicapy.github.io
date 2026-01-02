@@ -66,14 +66,18 @@ section.active{display:block}
 .home-hero{
   height:420px;
   border-radius:35px;
-  background:linear-gradient(180deg,#ffb6d5,#ffd6e9);
+  background:var(--bg-main);
   display:flex;
   align-items:center;
   justify-content:center;
+  transition:.6s;
 }
+
 .home-text{
   text-align:center;
   color:#fff;
+  position:relative;
+  z-index:2;
 }
 .home-text .script{
   font-family:"Pacifico",cursive;
@@ -167,6 +171,10 @@ button{
   color:#fff;
   transition:.4s;
 }
+.home-btn-main:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 25px rgba(255,92,138,.4);
+}
 
 body.night .home-btn-main,
 body.night button{
@@ -199,6 +207,8 @@ body.night button{
   background:radial-gradient(white 1px,transparent 1px);
   background-size:22px 22px;
   opacity:.35;
+  position:relative;
+  z-index:2;
 }
 
 body.night .home-hero::after{
