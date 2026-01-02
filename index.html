@@ -89,6 +89,15 @@ body.night .home-text .script,
 body.night .home-text .title{
   color:#f5ecff;
 }
+  
+  .home-text .title{
+  text-shadow:0 6px 20px rgba(255,92,138,.25);
+}
+
+body.night .home-text .title{
+  text-shadow:0 6px 20px rgba(200,167,255,.35);
+}
+
 
 .home-text{
   text-align:center;
@@ -237,6 +246,27 @@ body.night .home-hero::after{
 footer{
   color:var(--main-color);
 }
+  /* =========================
+   BUTTON STYLE – BAN NGÀY
+========================= */
+
+.home-btn-main{
+  background:linear-gradient(135deg,var(--main-color),#ff9dbd);
+  color:#fff;
+  border:none;
+  transition:.4s;
+}
+
+.home-btn-main:hover{
+  transform:scale(1.05);
+  box-shadow:0 10px 25px rgba(255,92,138,.4);
+}
+
+/* NIGHT DREAM BUTTON */
+body.night .home-btn-main{
+  background:linear-gradient(135deg,#9f7aea,#c8a7ff);
+}
+
 </style>
 
 
