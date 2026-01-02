@@ -72,6 +72,23 @@ section.active{display:block}
   justify-content:center;
   transition:.6s;
 }
+  
+/* HOME TEXT COLOR – FIX CHỮ BỊ CHÌM */
+.home-text{
+  text-align:center;
+  color:var(--main-color);
+}
+
+.home-text .script,
+.home-text .title{
+  color:var(--main-color);
+}
+
+/* NIGHT MODE TEXT */
+body.night .home-text .script,
+body.night .home-text .title{
+  color:#f5ecff;
+}
 
 .home-text{
   text-align:center;
