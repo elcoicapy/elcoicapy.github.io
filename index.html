@@ -11,13 +11,6 @@
 <style>
 *{box-sizing:border-box}
 
-body{
-  margin:0;
-  font-family:"Quicksand",sans-serif;
-  background:linear-gradient(180deg,#ffd6e9,#fff);
-  color:#6a3f52;
-}
-
 /* TOP BUTTONS */
 .home-btn,.menu-btn{
   position:fixed;
@@ -122,16 +115,18 @@ footer{
 }
 
 </style>
- /*THEME COLOR VARIABLES */
-root{
+/* =======================
+   THEME COLOR VARIABLES
+======================= */
+:root{
   --bg-main: linear-gradient(180deg,#ffd6e9,#fff);
-  --card-bg: rgba(255,255,255,.8);
+  --card-bg: rgba(255,255,255,.78);
   --main-color:#ff5c8a;
   --soft-color:#ffe6f0;
   --text-main:#6a3f52;
 }
 
-/* NIGHT MODE */
+/* NIGHT DREAM */
 body.night{
   --bg-main: linear-gradient(180deg,#3b2a4a,#1f1728);
   --card-bg: rgba(60,45,80,.75);
@@ -140,8 +135,10 @@ body.night{
   --text-main:#f1eaff;
 }
 
-/* APPLY VARIABLES */
+/* APPLY THEME */
 body{
+  margin:0;
+  font-family:"Quicksand",sans-serif;
   background:var(--bg-main);
   color:var(--text-main);
   transition:background .6s,color .6s;
@@ -170,6 +167,7 @@ button{
   color:#fff;
   transition:.4s;
 }
+
 body.night .home-btn-main,
 body.night button{
   background:linear-gradient(135deg,#9f7aea,#c8a7ff);
@@ -179,18 +177,21 @@ body.night button{
 .side-menu{
   background:var(--card-bg);
 }
+
 .side-menu a{
   color:var(--main-color);
 }
+
 .side-menu a:hover{
   background:var(--soft-color);
 }
 
-/* HOME HERO OVERLAY */
+/* HOME HERO DOTS */
 .home-hero{
   position:relative;
   overflow:hidden;
 }
+
 .home-hero::after{
   content:"";
   position:absolute;
@@ -200,7 +201,6 @@ body.night button{
   opacity:.35;
 }
 
-/* NIGHT OVERLAY */
 body.night .home-hero::after{
   background:radial-gradient(#c8a7ff 1px,transparent 1px);
   opacity:.25;
@@ -210,6 +210,7 @@ body.night .home-hero::after{
 footer{
   color:var(--main-color);
 }
+</style>
 
 </head>
 
@@ -283,8 +284,27 @@ function goHome(){
   menu.classList.remove("active");
 }
 </script>
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
+
+function openSection(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  menu.classList.remove("active");
+}
+
+function goHome(){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById("home").classList.add("active");
+  menu.classList.remove("active");
+}
+
 function toggleNight(){
   document.body.classList.toggle("night");
 }
+</script>
+
 </body>
 </html>
