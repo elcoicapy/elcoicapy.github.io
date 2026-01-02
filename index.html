@@ -121,12 +121,104 @@ footer{
   color:#aa7b8c;
 }
 </style>
+  /* =======================
+   THEME COLOR VARIABLES
+======================= */
+:root{
+  --bg-main: linear-gradient(180deg,#ffd6e9,#fff);
+  --card-bg: rgba(255,255,255,.8);
+  --main-color:#ff5c8a;
+  --soft-color:#ffe6f0;
+  --text-main:#6a3f52;
+}
+
+/* NIGHT MODE */
+body.night{
+  --bg-main: linear-gradient(180deg,#3b2a4a,#1f1728);
+  --card-bg: rgba(60,45,80,.75);
+  --main-color:#c8a7ff;
+  --soft-color:#4b3a63;
+  --text-main:#f1eaff;
+}
+
+/* APPLY VARIABLES */
+body{
+  background:var(--bg-main);
+  color:var(--text-main);
+  transition:background .6s,color .6s;
+}
+
+.container{
+  background:var(--card-bg);
+  backdrop-filter:blur(10px);
+  transition:.6s;
+}
+
+.card{
+  background:var(--card-bg);
+  transition:.6s;
+}
+
+/* HEADINGS */
+h1{
+  color:var(--main-color);
+}
+
+/* BUTTONS */
+.home-btn-main,
+button{
+  background:linear-gradient(135deg,var(--main-color),#ff9dbd);
+  color:#fff;
+  transition:.4s;
+}
+body.night .home-btn-main,
+body.night button{
+  background:linear-gradient(135deg,#9f7aea,#c8a7ff);
+}
+
+/* MENU */
+.side-menu{
+  background:var(--card-bg);
+}
+.side-menu a{
+  color:var(--main-color);
+}
+.side-menu a:hover{
+  background:var(--soft-color);
+}
+
+/* HOME HERO OVERLAY */
+.home-hero{
+  position:relative;
+  overflow:hidden;
+}
+.home-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(white 1px,transparent 1px);
+  background-size:22px 22px;
+  opacity:.35;
+}
+
+/* NIGHT OVERLAY */
+body.night .home-hero::after{
+  background:radial-gradient(#c8a7ff 1px,transparent 1px);
+  opacity:.25;
+}
+
+/* FOOTER */
+footer{
+  color:var(--main-color);
+}
+
 </head>
 
 <body>
 
 <div class="home-btn" onclick="goHome()">Elcoi-Capy</div>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="menu-btn" onclick="toggleMenu()">☰</div><div class="menu-btn" style="right:60px;font-size:22px" onclick="toggleNight()">🌙</div>
+
 
 <div class="side-menu" id="menu">
   <a onclick="openSection('about')">🐰 Chúc chúc</a>
@@ -192,6 +284,10 @@ function goHome(){
   menu.classList.remove("active");
 }
 </script>
+  function toggleNight(){
+  document.body.classList.toggle("night");
+}
+
 
 </body>
 </html>
