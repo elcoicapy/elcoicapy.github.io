@@ -25,10 +25,10 @@ body.night{
 /* ===== FLOAT ICON ===== */
 .float-icon{
   position:fixed;
-  font-size:22px;
+  font-size:24px;
   opacity:.85;
-  z-index:1;
   pointer-events:none;
+  z-index:1;
 }
 
 /* ===== PETAL ===== */
@@ -48,11 +48,6 @@ body.night{
   position:fixed;
   font-size:28px;
   z-index:1;
-  animation:fly linear infinite;
-}
-@keyframes fly{
-  from{transform:translateX(-20vw)}
-  to{transform:translateX(120vw)}
 }
 
 /* ===== BUBBLE ===== */
@@ -106,9 +101,7 @@ body.night{
   text-decoration:none;
 }
 .side-menu a:hover{background:#ffe6f0}
-body.night .side-menu{
-  background:#1f1430;
-}
+body.night .side-menu{background:#1f1430}
 
 /* ===== CONTAINER ===== */
 .container{
@@ -121,11 +114,8 @@ body.night .side-menu{
   position:relative;
   z-index:10;
 }
-body.night .container{
-  background:rgba(40,20,60,.6);
-}
+body.night .container{background:rgba(40,20,60,.6)}
 
-/* ===== SECTIONS ===== */
 section{display:none}
 section.active{display:block}
 
@@ -157,9 +147,7 @@ body.night .hero{
   padding:25px;
   margin-top:25px;
 }
-body.night .card{
-  background:#221236;
-}
+body.night .card{background:#221236}
 
 /* ===== LETTER ===== */
 .day-letter{display:block}
@@ -171,47 +159,71 @@ body.night .night-letter{display:block}
 
 <body>
 
-<!-- ===== FLOATING DECOR SCRIPT ===== -->
+<!-- ===== FLOATING DREAM EFFECTS ===== -->
 <script>
-/* ICON BAY NHIỀU HƯỚNG */
-const icons=["⭐","⭐","💖","💖","🐰","✨","✨"];
-icons.forEach(icon=>{
-  for(let i=0;i<5;i++){
-    let el=document.createElement("div");
-    el.className="float-icon";
-    el.innerText=icon;
+const ICONS = [
+  {char:"🦋", flap:true},
+  {char:"🌸"},
+  {char:"✨"},
+  {char:"⭐"},
+  {char:"💖"},
+  {char:"🐰"}
+];
 
-    let side=Math.floor(Math.random()*4);
-    let from,to;
+function createDreamIcon(icon){
+  const el=document.createElement("div");
+  el.className="float-icon";
+  el.innerText=icon.char;
+  document.body.appendChild(el);
 
-    if(side===0){
-      el.style.top="-10vh"; el.style.left=Math.random()*100+"vw";
-      from=`translateY(-10vh)`; to=`translateY(120vh)`;
-    }
-    if(side===1){
-      el.style.top="110vh"; el.style.left=Math.random()*100+"vw";
-      from=`translateY(110vh)`; to=`translateY(-120vh)`;
-    }
-    if(side===2){
-      el.style.left="-10vw"; el.style.top=Math.random()*100+"vh";
-      from=`translateX(-10vw)`; to=`translateX(120vw)`;
-    }
-    if(side===3){
-      el.style.left="110vw"; el.style.top=Math.random()*100+"vh";
-      from=`translateX(110vw)`; to=`translateX(-120vw)`;
-    }
+  const side=Math.floor(Math.random()*4);
+  let x,y,vx,vy;
 
-    el.animate([{transform:from},{transform:to}],{
-      duration:8000+Math.random()*10000,
-      delay:Math.random()*6000,
-      iterations:Infinity
-    });
+  if(side===0){x=Math.random()*innerWidth;y=-60;vx=(Math.random()-.5)*0.4;vy=0.4+Math.random()*0.6;}
+  if(side===1){x=Math.random()*innerWidth;y=innerHeight+60;vx=(Math.random()-.5)*0.4;vy=-(0.4+Math.random()*0.6);}
+  if(side===2){x=-60;y=Math.random()*innerHeight;vx=0.4+Math.random()*0.6;vy=(Math.random()-.5)*0.4;}
+  if(side===3){x=innerWidth+60;y=Math.random()*innerHeight;vx=-(0.4+Math.random()*0.6);vy=(Math.random()-.5)*0.4;}
 
-    document.body.appendChild(el);
+  let angle=Math.random()*Math.PI*2;
+  let wave=20+Math.random()*30;
+  let waveSpeed=0.01+Math.random()*0.02;
+  let rotate=Math.random()*360;
+  let rotateSpeed=(Math.random()-.5)*0.3;
+  let flap=0;
+
+  function animate(){
+    angle+=waveSpeed;
+    x+=vx;
+    y+=vy;
+    rotate+=rotateSpeed;
+
+    let scale=1;
+    if(icon.flap){flap+=0.15;scale=1+Math.sin(flap)*0.18;}
+
+    el.style.transform=`
+      translate(${x+Math.sin(angle)*wave}px,${y+Math.cos(angle*0.8)*wave}px)
+      rotate(${rotate}deg)
+      scale(${scale})
+    `;
+
+    if(x<-120||x>innerWidth+120||y<-120||y>innerHeight+120){
+      el.remove();
+      setTimeout(()=>createDreamIcon(icon),Math.random()*2000);
+      return;
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+}
+
+ICONS.forEach(icon=>{
+  let count=icon.flap?5:6;
+  for(let i=0;i<count;i++){
+    setTimeout(()=>createDreamIcon(icon),Math.random()*4000);
   }
 });
 
-/* HOA */
+/* PETALS */
 for(let i=0;i<14;i++){
   let p=document.createElement("div");
   p.className="petal";
@@ -222,28 +234,17 @@ for(let i=0;i<14;i++){
   document.body.appendChild(p);
 }
 
-/* BƯỚM */
-for(let i=0;i<6;i++){
-  let b=document.createElement("div");
-  b.className="butterfly";
-  b.innerText="🦋";
-  b.style.top=Math.random()*70+"vh";
-  b.style.animationDuration=14+Math.random()*10+"s";
-  b.style.animationDelay=Math.random()*4+"s";
-  document.body.appendChild(b);
-}
-
-/* BONG BÓNG */
+/* BUBBLES */
 for(let i=0;i<8;i++){
-  let bb=document.createElement("div");
-  bb.className="bubble";
-  let size=200+Math.random()*200;
-  bb.style.width=size+"px";
-  bb.style.height=size+"px";
-  bb.style.left=Math.random()*100+"vw";
-  bb.style.top=Math.random()*100+"vh";
-  bb.style.animationDuration=12+Math.random()*10+"s";
-  document.body.appendChild(bb);
+  let b=document.createElement("div");
+  b.className="bubble";
+  let size=220+Math.random()*200;
+  b.style.width=size+"px";
+  b.style.height=size+"px";
+  b.style.left=Math.random()*100+"vw";
+  b.style.top=Math.random()*100+"vh";
+  b.style.animationDuration=14+Math.random()*10+"s";
+  document.body.appendChild(b);
 }
 </script>
 
@@ -271,29 +272,14 @@ for(let i=0;i<8;i++){
   </div>
 </section>
 
-<section id="about">
-  <div class="card">🐰 Chúc chúc dễ thương cho người đặc biệt.</div>
-</section>
-
-<section id="blog">
-  <div class="card">✨ Những câu chuyện nhỏ của tụi mình.</div>
-</section>
-
-<section id="memory">
-  <div class="card">💖 Nơi này sẽ là ảnh kỉ niệm.</div>
-</section>
-
-<section id="game">
-  <div class="card">🎮 Game xếp hình sẽ đặt ở đây.</div>
-</section>
+<section id="about"><div class="card">🐰 Chúc chúc dễ thương.</div></section>
+<section id="blog"><div class="card">✨ Tình củm thanh xuân.</div></section>
+<section id="memory"><div class="card">💖 Ảnh kỉ niệm.</div></section>
+<section id="game"><div class="card">🎮 Game xếp hình sẽ thêm sau.</div></section>
 
 <section id="letter">
-  <div class="card day-letter">
-    ☀️ Thư ban ngày — những lời dễ nói.
-  </div>
-  <div class="card night-letter">
-    🌙 Thư ban đêm — những điều chỉ dám nói khi mơ.
-  </div>
+  <div class="card day-letter">☀️ Thư ban ngày.</div>
+  <div class="card night-letter">🌙 Thư ban đêm – chỉ mở khi Night Dream.</div>
 </section>
 
 </div>
@@ -309,9 +295,7 @@ function goHome(){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   home.classList.add("active");
 }
-function toggleNight(){
-  document.body.classList.toggle("night");
-}
+function toggleNight(){document.body.classList.toggle("night")}
 </script>
 
 </body>
