@@ -5,71 +5,21 @@
 <title>Elcoi & Capy</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:"Quicksand",sans-serif;
   background:linear-gradient(180deg,#ffd6e9,#fff);
   color:#6a3f52;
-  overflow-x:hidden;
-  transition:.8s;
-}
-body.night{
-  background:linear-gradient(180deg,#1a1025,#09050e);
-  color:#ffe6f0;
 }
 
-/* ===== FLOAT ICON ===== */
-.float-icon{
-  position:fixed;
-  font-size:26px;
-  opacity:.35;              /* NHẠT HƠN */
-  pointer-events:none;
-  z-index:2;
-  filter: blur(.2px);
-}
-
-/* ===== PETAL ===== */
-.petal{
-  position:fixed;
-  font-size:18px;
-  opacity:.4;
-  z-index:1;
-  animation:petalFall linear infinite;
-}
-@keyframes petalFall{
-  from{transform:translateY(-10vh) rotate(0deg)}
-  to{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* ===== BUTTERFLY ===== */
-.butterfly{
-  position:fixed;
-  font-size:28px;
-  opacity:.45;
-  pointer-events:none;
-}
-
-/* ===== BUBBLE ===== */
-.bubble{
-  position:fixed;
-  border-radius:50%;
-  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.8),rgba(255,255,255,.15));
-  opacity:.35;
-  animation:bubbleMove ease-in-out infinite;
-  z-index:0;
-}
-@keyframes bubbleMove{
-  0%{transform:translate(0,0)}
-  50%{transform:translate(50px,-60px)}
-  100%{transform:translate(-40px,40px)}
-}
-
-/* ===== UI ===== */
-.home-btn,.menu-btn,.night-btn{
+/* TOP BUTTONS */
+.home-btn,.menu-btn{
   position:fixed;
   top:16px;
   z-index:50;
@@ -78,45 +28,49 @@ body.night{
   color:#ff5c8a;
 }
 .home-btn{left:20px}
-.menu-btn{right:20px;font-size:26px}
-.night-btn{right:60px;font-size:22px}
+.menu-btn{right:20px;font-size:28px}
 
+/* MENU */
 .side-menu{
   position:fixed;
   top:0;
-  right:-260px;
-  width:250px;
+  right:-280px;
+  width:260px;
   height:100%;
   background:#fff;
   padding-top:90px;
   transition:.4s;
-  z-index:45;
+  z-index:40;
+  box-shadow:-10px 0 30px rgba(255,92,138,.25);
   border-radius:30px 0 0 30px;
 }
 .side-menu.active{right:0}
 .side-menu a{
   display:block;
-  padding:16px 30px;
+  padding:16px 28px;
   color:#ff5c8a;
   font-weight:600;
   text-decoration:none;
+  cursor:pointer;
 }
+.side-menu a:hover{background:#ffe6f0}
 
+/* CONTAINER */
 .container{
   max-width:900px;
-  margin:120px auto;
+  margin:110px auto 60px;
   background:rgba(255,255,255,.75);
-  backdrop-filter:blur(10px);
   border-radius:40px;
-  padding:45px;
-  position:relative;
-  z-index:10;
+  padding:40px;
+  box-shadow:0 35px 70px rgba(255,92,138,.25);
 }
 
+/* SECTION */
 section{display:none}
 section.active{display:block}
 
-.hero{
+/* HOME */
+.home-hero{
   height:420px;
   border-radius:35px;
   background:linear-gradient(180deg,#ffb6d5,#ffd6e9);
@@ -124,140 +78,119 @@ section.active{display:block}
   align-items:center;
   justify-content:center;
 }
-.hero h1{
-  font-family:"Pacifico";
-  font-size:3em;
-  color:white;
+.home-text{
+  text-align:center;
+  color:#fff;
+}
+.home-text .script{
+  font-family:"Pacifico",cursive;
+  font-size:2.5em;
+}
+.home-text .title{
+  font-family:"Playfair Display",serif;
+  font-size:3.5em;
+}
+.home-btn-main{
+  margin-top:22px;
+  padding:12px 30px;
+  border-radius:30px;
+  border:none;
+  background:#ff5c8a;
+  color:#fff;
+  cursor:pointer;
 }
 
+/* CONTENT */
+h1{
+  text-align:center;
+  font-family:"Playfair Display",serif;
+  color:#ff5c8a;
+}
 .card{
   background:#fff;
-  border-radius:25px;
+  border-radius:28px;
   padding:25px;
-  margin-top:25px;
+  margin:25px 0;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  margin-top:40px;
+  font-size:.85em;
+  color:#aa7b8c;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ===== DREAM ICON ENGINE ===== -->
-<script>
-const ICONS = [
-  {char:"🦋", flap:true},
-  {char:"🌸"},
-  {char:"✨"},
-  {char:"⭐"},
-  {char:"💖"},
-  {char:"🐰"}
-];
-
-function spawnIcon(icon){
-  const el=document.createElement("div");
-  el.className="float-icon";
-  el.innerText=icon.char;
-  document.body.appendChild(el);
-
-  let x=Math.random()*innerWidth;
-  let y=Math.random()*innerHeight;
-
-  let vx=(Math.random()-.5)*0.25;
-  let vy=(Math.random()-.5)*0.25;
-
-  let angle=Math.random()*Math.PI*2;
-  let wave=30+Math.random()*40;
-  let waveSpeed=0.008+Math.random()*0.01;
-
-  let flap=0;
-
-  function animate(){
-    angle+=waveSpeed;
-    x+=vx;
-    y+=vy;
-
-    if(x<0||x>innerWidth) vx*=-1;
-    if(y<0||y>innerHeight) vy*=-1;
-
-    let scale=1;
-    if(icon.flap){
-      flap+=0.12;
-      scale=1+Math.sin(flap)*0.2;
-    }
-
-    el.style.transform=`
-      translate(${x+Math.sin(angle)*wave}px,${y+Math.cos(angle)*wave}px)
-      scale(${scale})
-    `;
-    requestAnimationFrame(animate);
-  }
-  animate();
-}
-
-ICONS.forEach(icon=>{
-  let count=icon.flap?6:8;
-  for(let i=0;i<count;i++){
-    setTimeout(()=>spawnIcon(icon),Math.random()*3000);
-  }
-});
-
-/* PETALS */
-for(let i=0;i<14;i++){
-  let p=document.createElement("div");
-  p.className="petal";
-  p.innerText="🌸";
-  p.style.left=Math.random()*100+"vw";
-  p.style.animationDuration=12+Math.random()*10+"s";
-  p.style.animationDelay=Math.random()*6+"s";
-  document.body.appendChild(p);
-}
-
-/* BUBBLES */
-for(let i=0;i<7;i++){
-  let b=document.createElement("div");
-  b.className="bubble";
-  let size=240+Math.random()*220;
-  b.style.width=size+"px";
-  b.style.height=size+"px";
-  b.style.left=Math.random()*100+"vw";
-  b.style.top=Math.random()*100+"vh";
-  b.style.animationDuration=16+Math.random()*12+"s";
-  document.body.appendChild(b);
-}
-</script>
-
-<div class="home-btn" onclick="goHome()">Trang chủ</div>
-<div class="night-btn" onclick="toggleNight()">🌙</div>
+<div class="home-btn" onclick="goHome()">Elcoi-Capy</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
 <div class="side-menu" id="menu">
-  <a onclick="openSection('home')">🏠 Trang chủ</a>
   <a onclick="openSection('about')">🐰 Chúc chúc</a>
   <a onclick="openSection('blog')">✨ Tình củm</a>
   <a onclick="openSection('memory')">💖 Ảnh ảnh</a>
   <a onclick="openSection('game')">🎮 Gem gem</a>
-  <a onclick="openSection('letter')">💌 Nhắn nhắn</a>
+  <a onclick="openSection('letter')">💌 Thư</a>
 </div>
 
 <div class="container">
+
 <section id="home" class="active">
-  <div class="hero"><h1>Chúng mình</h1></div>
+  <div class="home-hero">
+    <div class="home-text">
+      <div class="script">Chúng mình</div>
+      <div class="title">Yêu Thương</div>
+      <button class="home-btn-main" onclick="toggleMenu()">Khám phá ✨</button>
+    </div>
+  </div>
 </section>
-<section id="about"><div class="card">🐰 Chúc chúc</div></section>
-<section id="blog"><div class="card">✨ Tình củm</div></section>
-<section id="memory"><div class="card">💖 Ảnh ảnh</div></section>
-<section id="game"><div class="card">🎮 Game</div></section>
-<section id="letter"><div class="card">💌 Thư</div></section>
+
+<section id="about">
+  <h1>🐰 Chúc chúc</h1>
+  <div class="card">Nội dung lời chúc ở đây 💖</div>
+</section>
+
+<section id="blog">
+  <h1>✨ Tình củm</h1>
+  <div class="card">Nội dung tình cảm ở đây ✨</div>
+</section>
+
+<section id="memory">
+  <h1>💖 Ảnh ảnh</h1>
+  <div class="card">Gallery ảnh sẽ thêm sau 📸</div>
+</section>
+
+<section id="game">
+  <h1>🎮 Gem gem</h1>
+  <div class="card">Game sẽ thêm sau 🧩</div>
+</section>
+
+<section id="letter">
+  <h1>💌 Thư</h1>
+  <div class="card">Thư ban ngày / ban đêm sẽ thêm 🌙</div>
+</section>
+
+<footer>✨ Chúng mình yêu thương ✨</footer>
+
 </div>
 
 <script>
-function toggleMenu(){menu.classList.toggle("active")}
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
 function openSection(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   menu.classList.remove("active");
 }
-function goHome(){openSection("home")}
-function toggleNight(){document.body.classList.toggle("night")}
+function goHome(){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById("home").classList.add("active");
+  menu.classList.remove("active");
+}
 </script>
 
 </body>
