@@ -2,11 +2,11 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Elcoi and Capy</title>
+<title>Chúng mình yêu thương</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- GOOGLE FONTS -->
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{box-sizing:border-box}
@@ -18,10 +18,8 @@ body{
   overflow-x:hidden;
   transition:.8s;
 }
-
-/* NIGHT DREAM */
 body.night{
-  background:linear-gradient(180deg,#1b1026,#0b0612);
+  background:linear-gradient(180deg,#1a1025,#09050e);
   color:#ffe6f0;
 }
 
@@ -29,21 +27,23 @@ body.night{
 .float-icon{
   position:fixed;
   font-size:22px;
-  animation:iconFloat linear infinite;
   opacity:.85;
   z-index:1;
+  animation:floatCrazy linear infinite;
 }
-@keyframes iconFloat{
-  from{transform:translateY(110vh) rotate(0deg)}
-  to{transform:translateY(-10vh) rotate(360deg)}
+@keyframes floatCrazy{
+  0%{transform:translate(0,110vh) rotate(0deg);opacity:0}
+  10%{opacity:1}
+  50%{transform:translate(-30px,40vh) rotate(180deg)}
+  100%{transform:translate(40px,-15vh) rotate(360deg);opacity:0}
 }
 
 /* ===== PETAL ===== */
 .petal{
   position:fixed;
   font-size:20px;
-  animation:petalFall linear infinite;
   z-index:1;
+  animation:petalFall linear infinite;
 }
 @keyframes petalFall{
   from{transform:translateY(-10vh) rotate(0deg)}
@@ -53,29 +53,31 @@ body.night{
 /* ===== BUTTERFLY ===== */
 .butterfly{
   position:fixed;
-  font-size:26px;
-  animation:fly linear infinite;
+  font-size:28px;
   z-index:1;
+  animation:fly linear infinite;
 }
 @keyframes fly{
-  from{transform:translateX(-10vw)}
-  to{transform:translateX(110vw)}
+  from{transform:translateX(-20vw)}
+  to{transform:translateX(120vw)}
 }
 
 /* ===== BUBBLE ===== */
 .bubble{
   position:fixed;
   border-radius:50%;
-  background:rgba(255,255,255,.35);
-  animation:float 10s ease-in-out infinite;
-  z-index:1;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9),rgba(255,255,255,.2));
+  opacity:.45;
+  animation:bubbleMove ease-in-out infinite;
+  z-index:0;
 }
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-25px)}
+@keyframes bubbleMove{
+  0%{transform:translate(0,0)}
+  50%{transform:translate(35px,-40px)}
+  100%{transform:translate(-20px,20px)}
 }
 
-/* ===== TOP ===== */
+/* ===== UI ===== */
 .home-btn,.menu-btn,.night-btn{
   position:fixed;
   top:16px;
@@ -88,52 +90,25 @@ body.night{
 .menu-btn{right:20px;font-size:26px}
 .night-btn{right:60px;font-size:22px}
 
-/* ===== MENU ===== */
-.side-menu{
-  position:fixed;
-  top:0;right:-280px;
-  width:260px;height:100%;
-  background:#fff;
-  padding-top:90px;
-  transition:.4s;
-  z-index:40;
-  border-radius:30px 0 0 30px;
-}
-body.night .side-menu{background:#1c112b}
-.side-menu.active{right:0}
-.side-menu a{
-  display:block;
-  padding:16px 30px;
-  color:#ff5c8a;
-  font-weight:600;
-  text-decoration:none;
-}
-
-/* ===== CONTAINER ===== */
 .container{
   max-width:900px;
-  margin:110px auto 60px;
+  margin:120px auto;
   background:rgba(255,255,255,.75);
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
   border-radius:40px;
   padding:45px;
   position:relative;
   z-index:10;
 }
 body.night .container{
-  background:rgba(40,20,60,.65);
+  background:rgba(40,20,60,.6);
 }
 
-/* ===== SECTIONS ===== */
-section{display:none;animation:slide .6s}
+section{display:none}
 section.active{display:block}
-@keyframes slide{
-  from{opacity:0;transform:translateX(40px)}
-  to{opacity:1}
-}
 
-/* ===== HOME ===== */
-.home-hero{
+/* ===== HERO ===== */
+.hero{
   height:420px;
   border-radius:35px;
   background:linear-gradient(180deg,#ffb6d5,#ffd6e9);
@@ -141,137 +116,131 @@ section.active{display:block}
   align-items:center;
   justify-content:center;
 }
-body.night .home-hero{
+body.night .hero{
   background:linear-gradient(180deg,#3a1b5a,#12091c);
 }
-.home-text{text-align:center;color:#fff}
-.home-text .script{
-  font-family:"Pacifico";
-  font-size:2.4em;
+.hero-text{
+  text-align:center;
+  color:white;
 }
-.home-text .title{
-  font-family:"Playfair Display";
-  font-size:3.4em;
+.hero-text h1{
+  font-family:"Pacifico";
+  font-size:3em;
+}
+.hero-text p{
+  font-size:1.2em;
 }
 
 /* ===== CARD ===== */
 .card{
   background:#fff;
-  border-radius:26px;
+  border-radius:25px;
   padding:25px;
-  margin:25px 0;
+  margin-top:25px;
 }
 body.night .card{
   background:#221236;
-  color:#ffe6f0;
 }
 
-/* LETTER SWITCH */
+/* ===== LETTER ===== */
 .day-letter{display:block}
 .night-letter{display:none}
 body.night .day-letter{display:none}
 body.night .night-letter{display:block}
-
-button{
-  background:#ff5c8a;
-  color:white;
-  border:none;
-  padding:10px 22px;
-  border-radius:20px;
-  cursor:pointer;
-}
-
-footer{text-align:center;font-size:.85em}
 </style>
 </head>
 
 <body>
 
-<!-- DECOR GENERATE -->
+<!-- ===== DECOR SCRIPT ===== -->
 <script>
-const icons=["⭐","💖","🐰","🌸","✨"];
-for(let i=0;i<20;i++){
-  let ic=document.createElement("div");
-  ic.className="float-icon";
-  ic.innerText=icons[Math.floor(Math.random()*icons.length)];
-  ic.style.left=Math.random()*100+"vw";
-  ic.style.animationDuration=6+Math.random()*8+"s";
-  document.body.appendChild(ic);
-}
-for(let i=0;i<15;i++){
+/* ICONS */
+const icons=["⭐","⭐","💖","💖","🐰","✨","✨"];
+icons.forEach(icon=>{
+  for(let i=0;i<5;i++){
+    let el=document.createElement("div");
+    el.className="float-icon";
+    el.innerText=icon;
+    el.style.left=Math.random()*100+"vw";
+    el.style.animationDuration=8+Math.random()*10+"s";
+    el.style.animationDelay=Math.random()*6+"s";
+    document.body.appendChild(el);
+  }
+});
+
+/* PETALS */
+for(let i=0;i<14;i++){
   let p=document.createElement("div");
   p.className="petal";
   p.innerText="🌸";
   p.style.left=Math.random()*100+"vw";
   p.style.animationDuration=10+Math.random()*10+"s";
+  p.style.animationDelay=Math.random()*5+"s";
   document.body.appendChild(p);
 }
+
+/* BUTTERFLIES */
 for(let i=0;i<6;i++){
-  let bf=document.createElement("div");
-  bf.className="butterfly";
-  bf.innerText="🦋";
-  bf.style.top=Math.random()*80+"vh";
-  bf.style.animationDuration=12+Math.random()*10+"s";
-  document.body.appendChild(bf);
-}
-for(let i=0;i<8;i++){
   let b=document.createElement("div");
-  b.className="bubble";
-  let size=80+Math.random()*120;
-  b.style.width=size+"px";
-  b.style.height=size+"px";
-  b.style.left=Math.random()*100+"vw";
-  b.style.top=Math.random()*100+"vh";
+  b.className="butterfly";
+  b.innerText="🦋";
+  b.style.top=Math.random()*70+"vh";
+  b.style.animationDuration=14+Math.random()*10+"s";
+  b.style.animationDelay=Math.random()*4+"s";
   document.body.appendChild(b);
+}
+
+/* BUBBLES */
+for(let i=0;i<8;i++){
+  let bb=document.createElement("div");
+  bb.className="bubble";
+  let size=180+Math.random()*180;
+  bb.style.width=size+"px";
+  bb.style.height=size+"px";
+  bb.style.left=Math.random()*100+"vw";
+  bb.style.top=Math.random()*100+"vh";
+  bb.style.animationDuration=12+Math.random()*10+"s";
+  document.body.appendChild(bb);
 }
 </script>
 
-<div class="home-btn" onclick="goHome()">Elcoi-Capy</div>
+<!-- ===== BUTTON ===== -->
+<div class="home-btn" onclick="goHome()">Trang chủ</div>
 <div class="night-btn" onclick="toggleNight()">🌙</div>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="menu-btn" onclick="openLetter()">☰</div>
 
-<div class="side-menu" id="menu">
-  <a onclick="openSection('about')">🐰 Chúc chúc</a>
-  <a onclick="openSection('blog')">✨ Tình củm</a>
-  <a onclick="openSection('memory')">💖 Ảnh ảnh</a>
-  <a onclick="openSection('letter')">💌 Nhắn nhắn</a>
-</div>
-
+<!-- ===== CONTENT ===== -->
 <div class="container">
-
 <section id="home" class="active">
-  <div class="home-hero">
-    <div class="home-text">
-      <div class="script">Chúng mình</div>
-      <div class="title">Yêu Thương</div>
-      <button onclick="toggleMenu()">Khám phá ✨</button>
+  <div class="hero">
+    <div class="hero-text">
+      <h1>Chúng mình</h1>
+      <p>Những ký ức dịu dàng trôi chậm ✨</p>
     </div>
   </div>
 </section>
 
 <section id="letter">
-  <h1>💌 Nhắn nhắn</h1>
   <div class="card day-letter">
-    ☀️ Ban ngày: Cảm ơn vì đã ở cạnh tớ 🌷
+    ☀️ <b>Ban ngày</b><br><br>
+    Cảm ơn vì đã xuất hiện trong thanh xuân này.
   </div>
+
   <div class="card night-letter">
-    🌙 Ban đêm: Thanh xuân này tớ rất trân trọng cậu 💗
+    🌙 <b>Ban đêm</b><br><br>
+    Có những điều chỉ bóng tối mới dám thì thầm…
   </div>
 </section>
-
-<footer>✨ Chúng mình yêu thương ✨</footer>
 </div>
 
 <script>
-function toggleMenu(){menu.classList.toggle("active")}
-function openSection(id){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  menu.classList.remove("active");
-}
 function goHome(){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  home.classList.add("active");
+  document.getElementById("home").classList.add("active");
+}
+function openLetter(){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById("letter").classList.add("active");
 }
 function toggleNight(){
   document.body.classList.toggle("night");
@@ -280,4 +249,3 @@ function toggleNight(){
 
 </body>
 </html>
-
