@@ -246,6 +246,47 @@ body.night .home-hero::after{
 footer{
   color:var(--main-color);
 }
+  
+  /* FIX MÀU CHỮ TRANG CHỦ */
+  .home-text{
+    text-align:center;
+    color:var(--main-color) !important;
+  }
+
+  .home-text .script,
+  .home-text .title{
+    color:var(--main-color) !important;
+  }
+
+  body.night .home-text .script,
+  body.night .home-text .title{
+    color:#f5ecff !important;
+  }
+
+  /* FIX NÚT KHÁM PHÁ */
+  .home-btn-main{
+    background:linear-gradient(135deg,var(--main-color),#ff9dbd) !important;
+    color:#fff !important;
+    border:none;
+  }
+
+  .home-btn-main:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 25px rgba(255,92,138,.4);
+  }
+
+  body.night .home-btn-main{
+    background:linear-gradient(135deg,#9f7aea,#c8a7ff) !important;
+  }
+
+  /* FIX MENU */
+  .side-menu{
+    background:#fff !important;
+  }
+
+  body.night .side-menu{
+    background:#2d203d !important;
+  }
   /* =========================
    BUTTON STYLE – BAN NGÀY
 ========================= */
