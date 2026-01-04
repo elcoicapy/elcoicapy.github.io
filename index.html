@@ -9,60 +9,109 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
 
-/* TOP BUTTONS */
+/* =====================
+   THEME VARIABLES
+===================== */
+:root{
+  --bg-main: linear-gradient(180deg,#ffd6e9,#fff);
+  --card-bg: rgba(255,255,255,.78);
+  --main-color:#ff5c8a;
+  --soft-color:#ffe6f0;
+  --text-color:#ff5c8a;
+}
+
+body.night{
+  --bg-main: linear-gradient(180deg,#3b2a4a,#1f1728);
+  --card-bg: rgba(60,45,80,.75);
+  --main-color:#c8a7ff;
+  --soft-color:#4b3a63;
+  --text-color:#f1eaff;
+}
+
+/* =====================
+   BASE
+===================== */
+body{
+  font-family:"Quicksand",sans-serif;
+  background:var(--bg-main);
+  color:var(--text-color);
+  transition:.6s;
+}
+
+h1{
+  text-align:center;
+  font-family:"Playfair Display",serif;
+  color:var(--main-color);
+}
+
+/* =====================
+   TOP BUTTONS
+===================== */
 .home-btn,.menu-btn{
   position:fixed;
   top:16px;
   z-index:50;
   cursor:pointer;
   font-weight:600;
-  color:#ff5c8a;
+  color:var(--main-color);
 }
 .home-btn{left:20px}
-.menu-btn{right:20px;font-size:28px}
+.menu-btn{right:20px;font-size:26px}
+.menu-btn.night{right:60px;font-size:20px}
 
-/* MENU */
+/* =====================
+   MENU
+===================== */
 .side-menu{
   position:fixed;
   top:0;
-  right:-280px;
+  right:-260px;
   width:260px;
   height:100%;
-  background:#fff;
   padding-top:90px;
+  background:var(--card-bg);
   transition:.4s;
   z-index:40;
-  box-shadow:-10px 0 30px rgba(255,92,138,.25);
+  box-shadow:-10px 0 30px rgba(0,0,0,.15);
   border-radius:30px 0 0 30px;
 }
 .side-menu.active{right:0}
 .side-menu a{
   display:block;
   padding:16px 28px;
-  color:#ff5c8a;
+  color:var(--main-color);
   font-weight:600;
   text-decoration:none;
-  cursor:pointer;
 }
-.side-menu a:hover{background:#ffe6f0}
+.side-menu a:hover{background:var(--soft-color)}
 
-/* CONTAINER */
+/* =====================
+   CONTAINER & SECTION
+===================== */
 .container{
   max-width:900px;
   margin:110px auto 60px;
-  background:rgba(255,255,255,.75);
+  background:var(--card-bg);
   border-radius:40px;
   padding:40px;
-  box-shadow:0 35px 70px rgba(255,92,138,.25);
+  backdrop-filter:blur(10px);
 }
 
-/* SECTION */
 section{display:none}
 section.active{display:block}
 
-/* HOME */
+.card{
+  background:var(--card-bg);
+  border-radius:28px;
+  padding:25px;
+  margin:25px 0;
+}
+
+/* =====================
+   HOME
+===================== */
 .home-hero{
   height:420px;
   border-radius:35px;
@@ -70,158 +119,6 @@ section.active{display:block}
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:.6s;
-}
-  
-/* HOME TEXT COLOR – FIX CHỮ BỊ CHÌM */
-.home-text{
-  text-align:center;
-  color:var(--main-color);
-}
-
-.home-text .script,
-.home-text .title{
-  color:var(--main-color);
-}
-
-/* NIGHT MODE TEXT */
-body.night .home-text .script,
-body.night .home-text .title{
-  color:#f5ecff;
-}
-  
-  .home-text .title{
-  text-shadow:0 6px 20px rgba(255,92,138,.25);
-}
-
-body.night .home-text .title{
-  text-shadow:0 6px 20px rgba(200,167,255,.35);
-}
-
-
-.home-text{
-  text-align:center;
-  color:#fff;
-  position:relative;
-  z-index:2;
-}
-.home-text .script{
-  font-family:"Pacifico",cursive;
-  font-size:2.5em;
-}
-.home-text .title{
-  font-family:"Playfair Display",serif;
-  font-size:3.5em;
-}
-.home-btn-main{
-  margin-top:22px;
-  padding:12px 30px;
-  border-radius:30px;
-  border:none;
-  background:#ff5c8a;
-  color:#fff;
-  cursor:pointer;
-}
-
-/* CONTENT */
-h1{
-  text-align:center;
-  font-family:"Playfair Display",serif;
-  color:#ff5c8a;
-}
-.card{
-  background:#fff;
-  border-radius:28px;
-  padding:25px;
-  margin:25px 0;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  margin-top:40px;
-  font-size:.85em;
-  color:#aa7b8c;
-}
-
-<style>
-/* =======================
-   THEME COLOR VARIABLES
-======================= */
-:root{
-  --bg-main: linear-gradient(180deg,#ffd6e9,#fff);
-  --card-bg: rgba(255,255,255,.78);
-  --main-color:#ff5c8a;
-  --soft-color:#ffe6f0;
-  --text-main:#6a3f52;
-}
-
-/* NIGHT DREAM */
-body.night{
-  --bg-main: linear-gradient(180deg,#3b2a4a,#1f1728);
-  --card-bg: rgba(60,45,80,.75);
-  --main-color:#c8a7ff;
-  --soft-color:#4b3a63;
-  --text-main:#f1eaff;
-}
-
-/* APPLY THEME */
-body{
-  margin:0;
-  font-family:"Quicksand",sans-serif;
-  background:var(--bg-main);
-  color:var(--text-main);
-  transition:background .6s,color .6s;
-}
-
-.container{
-  background:var(--card-bg);
-  backdrop-filter:blur(10px);
-  transition:.6s;
-}
-
-.card{
-  background:var(--card-bg);
-  transition:.6s;
-}
-
-/* HEADINGS */
-h1{
-  color:var(--main-color);
-}
-
-/* BUTTONS */
-.home-btn-main,
-button{
-  background:linear-gradient(135deg,var(--main-color),#ff9dbd);
-  color:#fff;
-  transition:.4s;
-}
-.home-btn-main:hover{
-  transform:scale(1.05);
-  box-shadow:0 10px 25px rgba(255,92,138,.4);
-}
-
-body.night .home-btn-main,
-body.night button{
-  background:linear-gradient(135deg,#9f7aea,#c8a7ff);
-}
-
-/* MENU */
-.side-menu{
-  background:var(--card-bg);
-}
-
-.side-menu a{
-  color:var(--main-color);
-}
-
-.side-menu a:hover{
-  background:var(--soft-color);
-}
-
-/* HOME HERO DOTS */
-.home-hero{
   position:relative;
   overflow:hidden;
 }
@@ -233,68 +130,42 @@ body.night button{
   background:radial-gradient(white 1px,transparent 1px);
   background-size:22px 22px;
   opacity:.35;
-  position:relative;
-  z-index:2;
 }
 
 body.night .home-hero::after{
   background:radial-gradient(#c8a7ff 1px,transparent 1px);
-  opacity:.25;
 }
 
-/* FOOTER */
-footer{
+.home-text{
+  text-align:center;
+  position:relative;
+  z-index:2;
+}
+
+.home-text .script{
+  font-family:"Pacifico",cursive;
+  font-size:2.5em;
   color:var(--main-color);
 }
-  
-  /* FIX MÀU CHỮ TRANG CHỦ */
-  .home-text{
-    text-align:center;
-    color:var(--main-color) !important;
-  }
 
-  .home-text .script,
-  .home-text .title{
-    color:var(--main-color) !important;
-  }
+.home-text .title{
+  font-family:"Playfair Display",serif;
+  font-size:3.5em;
+  color:var(--main-color);
+  text-shadow:0 6px 20px rgba(0,0,0,.15);
+}
 
-  body.night .home-text .script,
-  body.night .home-text .title{
-    color:#f5ecff !important;
-  }
-
-  /* FIX NÚT KHÁM PHÁ */
-  .home-btn-main{
-    background:linear-gradient(135deg,var(--main-color),#ff9dbd) !important;
-    color:#fff !important;
-    border:none;
-  }
-
-  .home-btn-main:hover{
-    transform:scale(1.05);
-    box-shadow:0 10px 25px rgba(255,92,138,.4);
-  }
-
-  body.night .home-btn-main{
-    background:linear-gradient(135deg,#9f7aea,#c8a7ff) !important;
-  }
-
-  /* FIX MENU */
-  .side-menu{
-    background:#fff !important;
-  }
-
-  body.night .side-menu{
-    background:#2d203d !important;
-  }
-  /* =========================
-   BUTTON STYLE – BAN NGÀY
-========================= */
-
+/* =====================
+   BUTTON
+===================== */
 .home-btn-main{
+  margin-top:22px;
+  padding:12px 30px;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
   background:linear-gradient(135deg,var(--main-color),#ff9dbd);
   color:#fff;
-  border:none;
   transition:.4s;
 }
 
@@ -303,79 +174,27 @@ footer{
   box-shadow:0 10px 25px rgba(255,92,138,.4);
 }
 
-/* NIGHT DREAM BUTTON */
 body.night .home-btn-main{
   background:linear-gradient(135deg,#9f7aea,#c8a7ff);
 }
 
-  /* =========================
-   FORCE TEXT COLOR – DAY
-========================= */
-
-/* MÀU CHỮ CHUNG BAN NGÀY */
-body{
-  color:#ff5c8a !important;
-}
-
-/* TIÊU ĐỀ */
-h1, h2, h3, h4{
-  color:#ff5c8a !important;
-}
-
-/* TRANG CHỦ */
-.home-text,
-.home-text .script,
-.home-text .title{
-  color:#ff5c8a !important;
-}
-
-/* MENU */
-.side-menu a{
-  color:#ff5c8a !important;
-}
-
-/* CHỮ TRONG CARD */
-.card{
-  color:#ff5c8a !important;
-}
-
-/* FOOTER */
+/* =====================
+   FOOTER
+===================== */
 footer{
-  color:#ff5c8a !important;
+  text-align:center;
+  margin-top:40px;
+  font-size:.85em;
+  color:var(--main-color);
 }
-
-/* =========================
-   NIGHT DREAM – CHỮ TÍM NHẠT
-========================= */
-
-body.night{
-  color:#f1eaff !important;
-}
-
-body.night h1,
-body.night h2,
-body.night h3,
-body.night h4,
-body.night .home-text,
-body.night .home-text .script,
-body.night .home-text .title,
-body.night .card,
-body.night footer,
-body.night .side-menu a{
-  color:#f1eaff !important;
-}
-
-
 </style>
-
-
 </head>
 
 <body>
 
 <div class="home-btn" onclick="goHome()">Elcoi-Capy</div>
-<div class="menu-btn" onclick="toggleMenu()">☰</div><div class="menu-btn" style="right:60px;font-size:22px" onclick="toggleNight()">🌙</div>
-
+<div class="menu-btn" onclick="toggleMenu()">☰</div>
+<div class="menu-btn night" onclick="toggleNight()">🌙</div>
 
 <div class="side-menu" id="menu">
   <a onclick="openSection('about')">🐰 Chúc chúc</a>
@@ -397,78 +216,27 @@ body.night .side-menu a{
   </div>
 </section>
 
-<section id="about">
-  <h1>🐰 Chúc chúc</h1>
-  <div class="card">Nội dung lời chúc ở đây 💖</div>
-</section>
-
-<section id="blog">
-  <h1>✨ Tình củm</h1>
-  <div class="card">Nội dung tình cảm ở đây ✨</div>
-</section>
-
-<section id="memory">
-  <h1>💖 Ảnh ảnh</h1>
-  <div class="card">Gallery ảnh sẽ thêm sau 📸</div>
-</section>
-
-<section id="game">
-  <h1>🎮 Gem gem</h1>
-  <div class="card">Game sẽ thêm sau 🧩</div>
-</section>
-
-<section id="letter">
-  <h1>💌 Thư</h1>
-  <div class="card">Thư ban ngày / ban đêm sẽ thêm 🌙</div>
-</section>
+<section id="about"><h1>🐰 Chúc chúc</h1><div class="card">Nội dung 💖</div></section>
+<section id="blog"><h1>✨ Tình củm</h1><div class="card">Nội dung ✨</div></section>
+<section id="memory"><h1>💖 Ảnh ảnh</h1><div class="card">Gallery 📸</div></section>
+<section id="game"><h1>🎮 Gem gem</h1><div class="card">Game 🧩</div></section>
+<section id="letter"><h1>💌 Thư</h1><div class="card">Thư 🌙</div></section>
 
 <footer>✨ Chúng mình yêu thương ✨</footer>
-
 </div>
 
 <script>
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
-}
+const menu=document.getElementById("menu");
+
+function toggleMenu(){menu.classList.toggle("active")}
 function openSection(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
   menu.classList.remove("active");
 }
-function goHome(){
-  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-  document.getElementById("home").classList.add("active");
-  menu.classList.remove("active");
-}
+function goHome(){openSection("home")}
+function toggleNight(){document.body.classList.toggle("night")}
 </script>
-<script>
-const menu = document.getElementById("menu");
-
-function toggleMenu(){
-  menu.classList.toggle("active");
-}
-
-function openSection(id){
-  document.querySelectorAll("section").forEach(s =>
-    s.classList.remove("active")
-  );
-  document.getElementById(id).classList.add("active");
-  menu.classList.remove("active");
-}
-
-function goHome(){
-  document.querySelectorAll("section").forEach(s =>
-    s.classList.remove("active")
-  );
-  document.getElementById("home").classList.add("active");
-  menu.classList.remove("active");
-}
-
-function toggleNight(){
-  document.body.classList.toggle("night");
-}
-</script>
-
 
 </body>
 </html>
