@@ -204,132 +204,86 @@ body.night .love-day{
 body.night .love-night{
   display:block;
 }
-   /* ======================
-   BIRTHDAY INTRO
-====================== */
-#birthday-intro{
+  /* BIRTHDAY */
+#birthday{
   position:fixed;
   inset:0;
-  background:rgba(255,214,233,.75);
-  backdrop-filter:blur(6px);
+  background:rgba(255,214,233,.95);
   display:flex;
-  justify-content:center;
   align-items:center;
-  z-index:9999;
-  animation:fadeOut 1s ease forwards;
-  animation-delay:6s;
+  justify-content:center;
+  z-index:999;
 }
 
-body.night #birthday-intro{
-  background:rgba(59,42,74,.85);
+body.night #birthday{
+  background:rgba(40,25,60,.95);
 }
 
-@keyframes fadeOut{
-  to{opacity:0;visibility:hidden}
-}
-
-/* CAKE */
 .cake{
-  position:relative;
-  text-align:center;
-  animation:pop 1.2s ease;
-}
-
-@keyframes pop{
-  0%{transform:scale(.6);opacity:0}
-  100%{transform:scale(1);opacity:1}
-}
-
-.cake-body{
   width:220px;
   height:120px;
-  background:linear-gradient(180deg,#ffb6d5,#ff5c8a);
+  background:#ffc1d9;
   border-radius:0 0 30px 30px;
-  box-shadow:0 20px 40px rgba(255,92,138,.4);
-}
-
-/* CANDLES */
-.candles{
-  position:absolute;
-  top:-60px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:14px;
-}
-
-.candle{
-  width:12px;
-  height:0;
-  background:#fff;
-  border-radius:6px;
-  animation:grow 1s ease forwards;
   position:relative;
 }
 
-.candle:nth-child(1){animation-delay:1s}
-.candle:nth-child(2){animation-delay:1.3s}
-.candle:nth-child(3){animation-delay:1.6s}
-.candle:nth-child(4){animation-delay:1.9s}
-.candle:nth-child(5){animation-delay:2.2s}
-
-@keyframes grow{
-  to{height:50px}
+.candles{
+  position:absolute;
+  top:-50px;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:6px;
 }
 
-/* FLAME */
-.candle::after{
+.candles span{
+  width:6px;
+  height:30px;
+  background:#fff;
+  position:relative;
+}
+
+.candles span::after{
   content:"";
   position:absolute;
-  top:-16px;
-  left:50%;
-  transform:translateX(-50%);
-  width:10px;
+  top:-10px;
+  left:-4px;
+  width:14px;
   height:14px;
-  background:radial-gradient(circle,#fff,#ffb300);
+  background:gold;
   border-radius:50%;
   opacity:0;
-  animation:flame 1.2s ease infinite;
-  animation-delay:3s;
+  animation:flame .5s forwards;
 }
 
 @keyframes flame{
-  0%{transform:translateX(-50%) scale(1);opacity:.9}
-  50%{transform:translateX(-50%) scale(.85);opacity:1}
-  100%{transform:translateX(-50%) scale(1);opacity:.9}
+  to{opacity:1}
 }
 
-/* TEXT */
-.cake .text{
-  margin-top:20px;
+.cake-text{
+  position:absolute;
+  bottom:15px;
+  width:100%;
+  text-align:center;
   font-family:"Pacifico",cursive;
-  font-size:2em;
   color:#ff5c8a;
 }
 
-body.night .cake .text{
-  color:#c8a7ff;
+body.night .cake-text{
+  color:#e6d8ff;
 }
-
 
 </style>
 </head>
 
 <body>
-   <!-- BIRTHDAY INTRO -->
-<div id="birthday-intro">
+<div id="birthday">
   <div class="cake">
-    <div class="cake-body"></div>
-
-    <div class="candles">
-      <div class="candle"></div>
-      <div class="candle"></div>
-      <div class="candle"></div>
-      <div class="candle"></div>
-      <div class="candle"></div>
+    <div class="candles"></div>
+    <div class="cake-text">
+      <div>Nguyễn Minh Huyền</div>
+      <div>18 tuổi</div>
     </div>
-
-    <div class="text">Happy Birthday 🎂</div>
   </div>
 </div>
 
@@ -392,14 +346,6 @@ function openSection(id){
 }
 function goHome(){openSection("home")}
 function toggleNight(){document.body.classList.toggle("night")}
-</script>
-
-   <script>
-if(sessionStorage.getItem("birthdayShown")){
-  document.getElementById("birthday-intro").style.display="none";
-}else{
-  sessionStorage.setItem("birthdayShown","yes");
-}
 </script>
 
 
