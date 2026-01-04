@@ -187,6 +187,24 @@ footer{
   font-size:.85em;
   color:var(--main-color);
 }
+   /* =====================
+   TÌNH CỦM – DAY / NIGHT
+===================== */
+
+/* Mặc định: BAN NGÀY */
+.love-night{
+  display:none;
+}
+
+/* NIGHT MODE */
+body.night .love-day{
+  display:none;
+}
+
+body.night .love-night{
+  display:block;
+}
+
 </style>
 </head>
 
@@ -217,7 +235,21 @@ footer{
 </section>
 
 <section id="about"><h1>🐰 Chúc chúc</h1><div class="card">Nội dung 💖</div></section>
-<section id="blog"><h1>✨ Tình củm</h1><div class="card">Nội dung ✨</div></section>
+<section id="blog">
+  <h1>✨ Tình củm</h1>
+
+  <!-- BAN NGÀY -->
+  <div class="card love-day">
+    Ban ngày là những cái nắm tay,
+    những lời thương nói khẽ giữa nắng hồng 💗
+  </div>
+
+  <!-- BAN ĐÊM -->
+  <div class="card love-night">
+    Ban đêm là nhớ nhiều hơn một chút,
+    là muốn ôm thật chặt trong giấc mơ tím 🌙💜
+  </div>
+</section>
 <section id="memory"><h1>💖 Ảnh ảnh</h1><div class="card">Gallery 📸</div></section>
 <section id="game"><h1>🎮 Gem gem</h1><div class="card">Game 🧩</div></section>
 <section id="letter"><h1>💌 Thư</h1><div class="card">Thư 🌙</div></section>
