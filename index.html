@@ -204,7 +204,7 @@ body.night .love-day{
 body.night .love-night{
   display:block;
 }
-  /* BIRTHDAY */
+/* OVERLAY */
 #birthday{
   position:fixed;
   inset:0;
@@ -212,54 +212,60 @@ body.night .love-night{
   display:flex;
   align-items:center;
   justify-content:center;
-  z-index:999;
+  z-index:9999;
 }
 
 body.night #birthday{
   background:rgba(40,25,60,.95);
 }
 
+/* CAKE */
 .cake{
-  width:220px;
-  height:120px;
+  width:260px;
+  height:140px;
   background:#ffc1d9;
-  border-radius:0 0 30px 30px;
+  border-radius:0 0 40px 40px;
   position:relative;
 }
 
+/* CANDLES */
 .candles{
   position:absolute;
-  top:-50px;
+  top:-60px;
   width:100%;
   display:flex;
   justify-content:center;
-  gap:6px;
+  gap:7px;
 }
 
-.candles span{
-  width:6px;
-  height:30px;
+.candle{
+  width:7px;
+  height:36px;
   background:#fff;
+  border-radius:4px;
   position:relative;
 }
 
-.candles span::after{
-  content:"";
+/* FLAME */
+.flame{
   position:absolute;
-  top:-10px;
-  left:-4px;
+  top:-16px;
+  left:50%;
+  transform:translateX(-50%);
   width:14px;
   height:14px;
-  background:gold;
+  background:radial-gradient(circle,#ffe066,#ff9f1c);
   border-radius:50%;
   opacity:0;
   animation:flame .5s forwards;
 }
 
 @keyframes flame{
-  to{opacity:1}
+  from{opacity:0; transform:translateX(-50%) scale(.5)}
+  to{opacity:1; transform:translateX(-50%) scale(1)}
 }
 
+/* TEXT */
 .cake-text{
   position:absolute;
   bottom:15px;
@@ -272,6 +278,7 @@ body.night #birthday{
 body.night .cake-text{
   color:#e6d8ff;
 }
+
 
 </style>
 </head>
@@ -353,24 +360,23 @@ const birthday = document.getElementById("birthday");
 
 // tạo 18 nến
 for(let i=0;i<18;i++){
-  const c = document.createElement("div");
-  c.className="candle";
-  c.style.animationDelay = i*0.15+"s";
-  c.style.setProperty("--delay", i*0.15+"s");
-  candleBox.appendChild(c);
+  const candle = document.createElement("div");
+  candle.className="candle";
+
+  const flame = document.createElement("div");
+  flame.className="flame";
+  flame.style.animationDelay = i*0.15+"s";
+
+  candle.appendChild(flame);
+  candleBox.appendChild(candle);
 }
 
-// delay cho từng ngọn lửa
-document.querySelectorAll(".candle").forEach((c,i)=>{
-  c.style.setProperty("--delay", i*0.15+"s");
-  c.querySelector?.style;
-});
-
-// tự tắt sau 5 giây
+// tự tắt sau 6 giây
 setTimeout(()=>{
   birthday.remove();
-},5000);
+},6000);
 </script>
+
 
 
 </body>
