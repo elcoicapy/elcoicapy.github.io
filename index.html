@@ -279,6 +279,154 @@ body.night .cake-text{
   color:#e6d8ff;
 }
 
+/* ===== WRAP ===== */
+.cake-wrap{
+  position:relative;
+  margin:40px auto;
+  text-align:center;
+}
+
+/* ===== BÁNH ===== */
+.cake{
+  position:relative;
+  width:260px;
+  margin:0 auto;
+  z-index:2;
+}
+
+.tier{
+  margin:0 auto;
+  border-radius:20px;
+  position:relative;
+}
+
+/* TẦNG TRÊN */
+.tier-top{
+  width:160px;
+  height:90px;
+  background:#ffd6e9;
+  z-index:2;
+}
+
+/* TẦNG DƯỚI */
+.tier-bottom{
+  width:220px;
+  height:110px;
+  background:#ffb3cf;
+  margin-top:-10px;
+}
+
+body.night .tier-top{background:#c8a7ff}
+body.night .tier-bottom{background:#9f7aea}
+
+/* ===== KEM CHẢY ===== */
+.drip{
+  position:absolute;
+  top:100%;
+  left:0;
+  width:100%;
+  height:26px;
+  background:#ffe6f0;
+  border-radius:0 0 30px 30px;
+}
+
+.drip::before,
+.drip::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:22px;
+  height:36px;
+  background:#ffe6f0;
+  border-radius:0 0 20px 20px;
+}
+
+.drip::before{left:22px}
+.drip::after{right:30px}
+
+body.night .drip,
+body.night .drip::before,
+body.night .drip::after{
+  background:#d9c7ff;
+}
+
+/* ===== NHÚM KEM ===== */
+.cream{
+  position:absolute;
+  top:-14px;
+  width:26px;
+  height:18px;
+  background:#fff;
+  border-radius:50%;
+}
+
+.c1{left:25px}
+.c2{left:70px}
+.c3{right:35px}
+
+body.night .cream{background:#f1eaff}
+
+/* ===== DÂU ===== */
+.strawberry{
+  position:absolute;
+  bottom:12px;
+  width:16px;
+  height:18px;
+  background:#ff3b5c;
+  border-radius:50% 50% 60% 60%;
+}
+
+.strawberry::before{
+  content:"";
+  position:absolute;
+  top:-5px;
+  left:50%;
+  transform:translateX(-50%);
+  width:10px;
+  height:6px;
+  background:#4caf50;
+  border-radius:6px;
+}
+
+.s1{left:35px}
+.s2{left:75px}
+.s3{right:45px}
+
+body.night .strawberry{background:#c86cff}
+body.night .strawberry::before{background:#7ddc9a}
+
+/* ===== CHỮ ===== */
+.cake-text{
+  margin-top:14px;
+  font-weight:600;
+  color:var(--main-color);
+}
+body.night .cake-text{color:#f1eaff}
+
+/* ===== PHÁO ===== */
+.confetti{
+  position:absolute;
+  inset:-60px;
+  pointer-events:none;
+}
+
+.confetti span{
+  position:absolute;
+  width:8px;
+  height:14px;
+  background:#ff9dbd;
+  opacity:.8;
+  animation:confetti 3.5s linear infinite;
+}
+
+body.night .confetti span{
+  background:#c8a7ff;
+}
+
+@keyframes confetti{
+  0%{transform:translateY(-40px) rotate(0deg);opacity:1}
+  100%{transform:translateY(300px) rotate(360deg);opacity:0}
+}
 
 </style>
 </head>
@@ -287,6 +435,30 @@ body.night .cake-text{
 <div id="birthday">
   <div class="cake">
     <div class="candles"></div>
+   <div class="cake-wrap">
+  <!-- PHÁO -->
+  <div class="confetti"></div>
+
+  <!-- BÁNH -->
+  <div class="cake">
+    <div class="candles"></div>
+
+    <!-- TẦNG TRÊN -->
+    <div class="tier tier-top">
+      <div class="drip"></div>
+
+      <div class="cream c1"></div>
+      <div class="cream c2"></div>
+      <div class="cream c3"></div>
+
+      <div class="strawberry s1"></div>
+      <div class="strawberry s2"></div>
+      <div class="strawberry s3"></div>
+    </div>
+
+    <!-- TẦNG DƯỚI -->
+    <div class="tier tier-bottom"></div>
+
     <div class="cake-text">
       <div>Nguyễn Minh Huyền</div>
       <div>18 tuổi</div>
@@ -375,6 +547,17 @@ for(let i=0;i<18;i++){
 setTimeout(()=>{
   birthday.remove();
 },6000);
+</script>
+<script>
+const confetti = document.querySelector(".confetti");
+
+for(let i=0;i<30;i++){
+  const c = document.createElement("span");
+  c.style.left = Math.random()*100+"%";
+  c.style.animationDelay = Math.random()*3+"s";
+  c.style.transform = `rotate(${Math.random()*360}deg)`;
+  confetti.appendChild(c);
+}
 </script>
 
 
