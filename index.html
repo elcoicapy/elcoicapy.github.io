@@ -347,6 +347,30 @@ function openSection(id){
 function goHome(){openSection("home")}
 function toggleNight(){document.body.classList.toggle("night")}
 </script>
+<script>
+const candleBox = document.querySelector(".candles");
+const birthday = document.getElementById("birthday");
+
+// tạo 18 nến
+for(let i=0;i<18;i++){
+  const c = document.createElement("div");
+  c.className="candle";
+  c.style.animationDelay = i*0.15+"s";
+  c.style.setProperty("--delay", i*0.15+"s");
+  candleBox.appendChild(c);
+}
+
+// delay cho từng ngọn lửa
+document.querySelectorAll(".candle").forEach((c,i)=>{
+  c.style.setProperty("--delay", i*0.15+"s");
+  c.querySelector?.style;
+});
+
+// tự tắt sau 5 giây
+setTimeout(()=>{
+  birthday.remove();
+},5000);
+</script>
 
 
 </body>
