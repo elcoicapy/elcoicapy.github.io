@@ -286,146 +286,155 @@ body.night .cake-text{
   text-align:center;
 }
 
+/* ===== VÙNG BÁNH ===== */
+.cake-area{
+  position:relative;
+  margin:60px auto;
+  width:300px;
+  text-align:center;
+}
+
 /* ===== BÁNH ===== */
 .cake{
   position:relative;
+  z-index:2;
+}
+
+/* TẦNG DƯỚI (TO) */
+.cake-bottom{
   width:260px;
+  height:140px;
   margin:0 auto;
-  z-index:2;
+  background:#ffb6d5;
+  border-radius:30px;
 }
 
-.tier{
-  margin:0 auto;
-  border-radius:20px;
-  position:relative;
+body.night .cake-bottom{
+  background:#8f7ac7;
 }
 
-/* TẦNG TRÊN */
-.tier-top{
-  width:160px;
-  height:90px;
-  background:#ffd6e9;
-  z-index:2;
-}
-
-/* TẦNG DƯỚI */
-.tier-bottom{
-  width:220px;
+/* TẦNG TRÊN (NHỎ) */
+.cake-top{
+  width:180px;
   height:110px;
-  background:#ffb3cf;
-  margin-top:-10px;
+  margin:0 auto -20px;
+  background:#ffd6e9;
+  border-radius:28px;
+  position:relative;
+  z-index:3;
 }
 
-body.night .tier-top{background:#c8a7ff}
-body.night .tier-bottom{background:#9f7aea}
+body.night .cake-top{
+  background:#bda7ff;
+}
 
 /* ===== KEM CHẢY ===== */
-.drip{
+.cream-drip{
   position:absolute;
-  top:100%;
+  bottom:-18px;
   left:0;
   width:100%;
   height:26px;
-  background:#ffe6f0;
+  background:#fff;
   border-radius:0 0 30px 30px;
 }
 
-.drip::before,
-.drip::after{
+.cream-drip::before,
+.cream-drip::after{
   content:"";
   position:absolute;
-  top:0;
-  width:22px;
-  height:36px;
-  background:#ffe6f0;
+  width:20px;
+  height:32px;
+  background:#fff;
+  bottom:-8px;
   border-radius:0 0 20px 20px;
 }
 
-.drip::before{left:22px}
-.drip::after{right:30px}
+.cream-drip::before{left:30px}
+.cream-drip::after{right:40px}
 
-body.night .drip,
-body.night .drip::before,
-body.night .drip::after{
-  background:#d9c7ff;
+body.night .cream-drip,
+body.night .cream-drip::before,
+body.night .cream-drip::after{
+  background:#efe6ff;
 }
 
 /* ===== NHÚM KEM ===== */
-.cream{
+.cream.swirl{
   position:absolute;
-  top:-14px;
+  top:-18px;
   width:26px;
-  height:18px;
+  height:22px;
   background:#fff;
   border-radius:50%;
 }
 
-.c1{left:25px}
-.c2{left:70px}
-.c3{right:35px}
-
-body.night .cream{background:#f1eaff}
+.s1{left:30px}
+.s2{left:75px}
+.s3{right:30px}
 
 /* ===== DÂU ===== */
-.strawberry{
+.berry{
   position:absolute;
-  bottom:12px;
-  width:16px;
-  height:18px;
-  background:#ff3b5c;
+  bottom:16px;
+  width:18px;
+  height:20px;
+  background:#ff4d6d;
   border-radius:50% 50% 60% 60%;
 }
 
-.strawberry::before{
+.berry::before{
   content:"";
   position:absolute;
-  top:-5px;
+  top:-6px;
   left:50%;
   transform:translateX(-50%);
-  width:10px;
+  width:12px;
   height:6px;
   background:#4caf50;
   border-radius:6px;
 }
 
-.s1{left:35px}
-.s2{left:75px}
-.s3{right:45px}
+.b1{left:45px}
+.b2{right:45px}
 
-body.night .strawberry{background:#c86cff}
-body.night .strawberry::before{background:#7ddc9a}
+body.night .berry{background:#c77dff}
+body.night .berry::before{background:#7ee0a1}
 
-/* ===== CHỮ ===== */
-.cake-text{
-  margin-top:14px;
+/* ===== TÊN ===== */
+.cake-name{
+  margin-top:16px;
   font-weight:600;
   color:var(--main-color);
 }
-body.night .cake-text{color:#f1eaff}
+body.night .cake-name{color:#f1eaff}
 
-/* ===== PHÁO ===== */
-.confetti{
+/* ===== PHÁO HOA BAY ===== */
+.fireworks{
   position:absolute;
-  inset:-60px;
+  inset:-80px;
   pointer-events:none;
+  z-index:1;
 }
 
-.confetti span{
+.fireworks span{
   position:absolute;
-  width:8px;
-  height:14px;
+  width:10px;
+  height:10px;
   background:#ff9dbd;
-  opacity:.8;
-  animation:confetti 3.5s linear infinite;
+  border-radius:50%;
+  animation:floatFire 6s ease-in-out infinite;
+  opacity:.7;
 }
 
-body.night .confetti span{
+body.night .fireworks span{
   background:#c8a7ff;
 }
 
-@keyframes confetti{
-  0%{transform:translateY(-40px) rotate(0deg);opacity:1}
-  100%{transform:translateY(300px) rotate(360deg);opacity:0}
+@keyframes floatFire{
+  0%{transform:translateY(0) translateX(0) scale(1)}
+  50%{transform:translateY(-80px) translateX(40px) scale(1.2)}
+  100%{transform:translateY(-160px) translateX(-30px) scale(.8);opacity:0}
 }
 
 </style>
@@ -433,35 +442,28 @@ body.night .confetti span{
 
 <body>
 <div id="birthday">
-  <div class="cake">
-    <div class="candles"></div>
-   <div class="cake-wrap">
-  <!-- PHÁO -->
-  <div class="confetti"></div>
+ <div class="cake-area">
+  <div class="fireworks"></div>
 
-  <!-- BÁNH -->
   <div class="cake">
-    <div class="candles"></div>
-
     <!-- TẦNG TRÊN -->
-    <div class="tier tier-top">
-      <div class="drip"></div>
+    <div class="cake-top">
+      <div class="cream-drip"></div>
 
-      <div class="cream c1"></div>
-      <div class="cream c2"></div>
-      <div class="cream c3"></div>
+      <div class="cream swirl s1"></div>
+      <div class="cream swirl s2"></div>
+      <div class="cream swirl s3"></div>
 
-      <div class="strawberry s1"></div>
-      <div class="strawberry s2"></div>
-      <div class="strawberry s3"></div>
+      <div class="berry b1"></div>
+      <div class="berry b2"></div>
     </div>
 
     <!-- TẦNG DƯỚI -->
-    <div class="tier tier-bottom"></div>
+    <div class="cake-bottom"></div>
 
-    <div class="cake-text">
+    <div class="cake-name">
       <div>Nguyễn Minh Huyền</div>
-      <div>18 tuổi</div>
+      <small>18 tuổi</small>
     </div>
   </div>
 </div>
@@ -549,14 +551,14 @@ setTimeout(()=>{
 },6000);
 </script>
 <script>
-const confetti = document.querySelector(".confetti");
+const fire = document.querySelector(".fireworks");
 
-for(let i=0;i<30;i++){
-  const c = document.createElement("span");
-  c.style.left = Math.random()*100+"%";
-  c.style.animationDelay = Math.random()*3+"s";
-  c.style.transform = `rotate(${Math.random()*360}deg)`;
-  confetti.appendChild(c);
+for(let i=0;i<20;i++){
+  const f = document.createElement("span");
+  f.style.left = Math.random()*100 + "%";
+  f.style.top = Math.random()*60 + "%";
+  f.style.animationDelay = Math.random()*4 + "s";
+  fire.appendChild(f);
 }
 </script>
 
