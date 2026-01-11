@@ -204,11 +204,70 @@ body.night .love-day{
 body.night .love-night{
   display:block;
 }
+/* ===== HAPPY BIRTHDAY OVERLAY ===== */
+.hb-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 220, 235, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* chữ */
+.hb-text{
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff5c8a;
+  animation: zoomIn 2.5s ease forwards;
+  font-family: 'Comic Sans MS', 'Poppins', sans-serif;
+}
+
+/* zoom chữ */
+@keyframes zoomIn{
+  from{
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  to{
+    transform: scale(1.8);
+    opacity: 1;
+  }
+}
+
+/* ===== CONFETTI ===== */
+.confetti span{
+  position: absolute;
+  width: 8px;
+  height: 14px;
+  background: pink;
+  opacity: 0.9;
+  animation: fly 4s linear infinite;
+}
+
+@keyframes fly{
+  from{
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 1;
+  }
+  to{
+    transform: translateY(-10vh) rotate(360deg);
+    opacity: 0;
+  }
+}
 
 </style>
 </head>
 
 <body>
+   <!-- 🎉 HAPPY BIRTHDAY -->
+<div class="hb-overlay" id="hb">
+  <div class="hb-text">Happy Birthday 🎂</div>
+  <div class="confetti"></div>
+</div>
+
 <div class="home-btn" onclick="goHome()">Elcoi-Capy</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 <div class="menu-btn night" onclick="toggleNight()">🌙</div>
@@ -267,6 +326,23 @@ function openSection(id){
 }
 function goHome(){openSection("home")}
 function toggleNight(){document.body.classList.toggle("night")}
+</script>
+<script>
+/* tạo pháo */
+const confettiBox = document.querySelector(".confetti");
+
+for(let i=0;i<30;i++){
+  const s = document.createElement("span");
+  s.style.left = Math.random()*100 + "vw";
+  s.style.animationDelay = Math.random()*3 + "s";
+  s.style.background = ["#ff5c8a","#ff9ecf","#ffc1dd"][Math.floor(Math.random()*3)];
+  confettiBox.appendChild(s);
+}
+
+/* tự tắt sau 4s */
+setTimeout(()=>{
+  document.getElementById("hb").style.display="none";
+},4000);
 </script>
 
 </body>
