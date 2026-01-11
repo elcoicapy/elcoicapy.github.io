@@ -240,20 +240,20 @@ body.night .love-night{
 /* ===== CONFETTI ===== */
 .confetti span{
   position: absolute;
-  width: 8px;
+  width: 10px;
   height: 14px;
-  background: pink;
-  opacity: 0.9;
-  animation: fly 4s linear infinite;
+  opacity: .8;
+  border-radius: 2px;
+  animation: confettiFly linear infinite;
 }
 
-@keyframes fly{
-  from{
-    transform: translateY(100vh) rotate(0deg);
+@keyframes confettiFly{
+  0%{
+    transform: translate(var(--x-start), var(--y-start)) rotate(0deg);
     opacity: 1;
   }
-  to{
-    transform: translateY(-10vh) rotate(360deg);
+  100%{
+    transform: translate(var(--x-end), var(--y-end)) rotate(360deg);
     opacity: 0;
   }
 }
@@ -328,22 +328,41 @@ function goHome(){openSection("home")}
 function toggleNight(){document.body.classList.toggle("night")}
 </script>
 <script>
-/* tạo pháo */
 const confettiBox = document.querySelector(".confetti");
 
-for(let i=0;i<30;i++){
-  const s = document.createElement("span");
-  s.style.left = Math.random()*100 + "vw";
-  s.style.animationDelay = Math.random()*3 + "s";
-  s.style.background = ["#ff5c8a","#ff9ecf","#ffc1dd"][Math.floor(Math.random()*3)];
-  confettiBox.appendChild(s);
+for(let i=0;i<40;i++){
+  const c = document.createElement("span");
+
+  // xuất phát từ chỗ khuất
+  const startX = Math.random() > 0.5 ? "-10vw" : "110vw";
+  const startY = Math.random()*100 + "vh";
+
+  const endX = Math.random()*100 + "vw";
+  const endY = Math.random() > 0.5 ? "-20vh" : "120vh";
+
+  c.style.setProperty("--x-start", startX);
+  c.style.setProperty("--y-start", startY);
+  c.style.setProperty("--x-end", endX);
+  c.style.setProperty("--y-end", endY);
+
+  c.style.left = 0;
+  c.style.top = 0;
+
+  c.style.background =
+    ["#ff5c8a","#ff9ecf","#ffc1dd"][Math.floor(Math.random()*3)];
+
+  c.style.animationDuration = 4 + Math.random()*4 + "s";
+  c.style.animationDelay = Math.random()*5 + "s";
+
+  confettiBox.appendChild(c);
 }
 
-/* tự tắt sau 4s */
+/* tắt overlay sau 8s */
 setTimeout(()=>{
   document.getElementById("hb").style.display="none";
-},4000);
+},8000);
 </script>
+
 
 </body>
 </html>
