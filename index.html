@@ -266,6 +266,36 @@ body.night .love-night{
     font-size:20px;
   }
 }
+.hb-text{
+  font-family:"Pacifico", cursive !important;
+  color:#ff5c8a;
+  animation: zoomIn 6s ease forwards;
+  text-align:center;
+  display:block;
+}
+
+/* DÒNG 1 */
+.hb-text.line1{
+  font-size:46px;
+}
+
+/* DÒNG 2 – NHỎ HƠN, MỀM HƠN */
+.hb-text.line2{
+  font-size:34px;
+  margin-top:12px;
+  opacity:.95;
+}
+
+/* MOBILE */
+@media (max-width:600px){
+  .hb-text.line1{font-size:34px}
+  .hb-text.line2{font-size:26px}
+}
+
+/* NIGHT MODE */
+body.night .hb-text{
+  color:#f1eaff;
+}
 
 </style>
 </head>
