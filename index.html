@@ -204,38 +204,6 @@ body.night .love-day{
 body.night .love-night{
   display:block;
 }
-/* ===== HAPPY BIRTHDAY OVERLAY ===== */
-.hb-overlay{
-  position: fixed;
-  inset: 0;
-  background: rgba(255, 220, 235, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  overflow: hidden;
-}
-
-/* chữ */
-.hb-text{
-  font-size: 15px;
-  font-weight: 700;
-  color: #ff5c8a;
-  animation: zoomIn 2.5s ease forwards;
-  font-family: 'Comic Sans MS', 'Poppins', sans-serif;
-}
-
-/* zoom chữ */
-@keyframes zoomIn{
-  from{
-    transform: scale(0.2);
-    opacity: 0;
-  }
-  to{
-    transform: scale(1.8);
-    opacity: 1;
-  }
-}
 
 /* ===== CONFETTI ===== */
 .confetti span{
@@ -313,11 +281,18 @@ body.night .hb-text{
   from{transform:scale(.6);opacity:0}
   to{transform:scale(1);opacity:1}
 }
+.confetti{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9998;
+}
 
 </style>
 </head>
 
 <body>
+   <div class="confetti"></div>
   <!-- HAPPY BIRTHDAY OVERLAY -->
 <div class="hb-overlay" id="hbOverlay">
   <div class="hb-wrapper">
@@ -415,10 +390,6 @@ for(let i=0;i<40;i++){
   confettiBox.appendChild(c);
 }
 
-/* tắt overlay sau 7s */
-setTimeout(()=>{
-  document.getElementById("hb").style.display="none";
-},7000);
 </script>
 <script>
 setTimeout(()=>{
