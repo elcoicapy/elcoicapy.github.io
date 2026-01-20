@@ -294,87 +294,6 @@ body.night .hb-text{
   position:relative;
   z-index:2;
 }
-/* =====================
-   MEMORY – PHOTO ALBUM
-===================== */
-
-.album{
-  margin-top:30px;
-}
-
-.album h2{
-  margin-bottom:16px;
-  color:var(--main-color);
-  font-family:"Playfair Display",serif;
-}
-
-/* GRID ẢNH */
-.photo-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:16px;
-}
-
-/* CARD ẢNH */
-.photo-card{
-  background:var(--card-bg);
-  border-radius:20px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.4s;
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.photo-card:hover{
-  transform:translateY(-6px) scale(1.02);
-}
-
-/* ẢNH */
-.photo-card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  display:block;
-}
-
-/* CAPTION */
-.photo-card .caption{
-  padding:10px;
-  font-size:.9em;
-  text-align:center;
-  color:var(--text-color);
-}
-
-/* =====================
-   LIGHTBOX
-===================== */
-.lightbox{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-
-.lightbox.active{
-  display:flex;
-}
-
-.lightbox img{
-  max-width:90%;
-  max-height:80%;
-  border-radius:20px;
-  box-shadow:0 20px 50px rgba(0,0,0,.4);
-}
-
-.lightbox .caption{
-  margin-top:14px;
-  color:#fff;
-  text-align:center;
-}
-
 
 </style>
 </head>
@@ -413,73 +332,23 @@ body.night .hb-text{
   </div>
 </section>
 
-<section id="about"><h1>🐰 Chúc chúc</h1><div class="card">Nội dung 💖</div></section>
+<section id="about"><h1>🐰 Chúc chúc</h1><div class="card">Chúc mừng sinh nhật Minh Huyền nheee! Thêm một tuổi mới, chúc bà luôn vui vẻ, hạnh phúc. Mong là những ngày tới sẽ có nhiều tiếng cười hơn là thở dài, nhiều động lực hơn là mệt mỏi. Chúc bà không sì trét trong quá trình ôn thi . Sinh nhật này chúc bà thật nhiều năng lượng tích cực, học tốt hơn một chút, vui nhiều hơn một chút, và mọi điều mong muốn đều dần thành hiện thực 🎂✨</div></section>
 <section id="blog">
   <h1>✨ Tình củm</h1>
 
   <!-- BAN NGÀY -->
   <div class="card love-day">
-    Ban ngày là những cái nắm tay,
-    những lời thương nói khẽ giữa nắng hồng 💗
+   3 năm rồi á!!! nhanh nhể mới hôm nào còn hỏi ngồi cạnh t được không mà đã ngồi cùng 3 năm rồi à:))) hmmm t cx không biết nói gì nữa OK chốt lại là t rất quý m💖
   </div>
 
   <!-- BAN ĐÊM -->
   <div class="card love-night">
-    Ban đêm là nhớ nhiều hơn một chút,
-    là muốn ôm thật chặt trong giấc mơ tím 🌙💜
+   tada vẫn còn nè, ummm t tính viết xàm xàm á nma thấy sến quá nên xóa đi rồi:))) thoy khi nào nghỉ hè xong không nhìn thấy mặt nhau nữa thì t cập nhập thêm:>
   </div>
 </section>
-<section id="memory">
-  <h1>💖 Ảnh ảnh</h1>
-
-  <!-- ALBUM 2023 -->
-  <div class="album">
-    <h2>📖 2023</h2>
-    <div class="photo-grid">
-
-      <div class="photo-card" onclick="openLightbox(this)">
-        <img src="https://ibb.co/wZJpyVSK">
-        <div class="caption">Ngày đầu gặp nhau 🌸</div>
-      </div>
-
-      <div class="photo-card" onclick="openLightbox(this)">
-        <img src="https://ibb.co/wZJpyVSK">
-        <div class="caption">Buổi chiều nắng hồng 💗</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ALBUM 2024 -->
-  <div class="album">
-    <h2>📖 2024</h2>
-    <div class="photo-grid">
-
-      <div class="photo-card" onclick="openLightbox(this)">
-        <img src="https://ibb.co/wZJpyVSK">
-        <div class="caption">Những ngày thật gần ✨</div>
-      </div>
-
-      <div class="photo-card" onclick="openLightbox(this)">
-        <img src="https://ibb.co/wZJpyVSK">
-        <div class="caption">Kỷ niệm không quên 🫶</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div>
-    <img id="lightboxImg">
-    <div class="caption" id="lightboxCap"></div>
-  </div>
-</div>
-
-<section id="game"><h1>🎮 Gem gem</h1><div class="card">Game 🧩</div></section>
-<section id="letter"><h1>💌 Thư</h1><div class="card">Thư 🌙</div></section>
+<section id="memory"><h1>💖 Ảnh ảnh</h1><div class="card">Nhẽ ra phần này là tổng hợp ảnh của chúng mình 3 năm qua NHƯNG toii đã thử mọi cách, mày mò 2 3 tiếng nhưng khong thể nào mà chèn vô được cái ảnh nào hết:))) nên thôi bà tự mở ảnh bà xem lại nha:'))) toi hết cách roi</div></section>
+<section id="game"><h1>🎮 Gem gem</h1><div class="card">Phần này toi định để mấy cái trò chơi xàm xàm á nma tại thi khảo sát với toi hơi lười nên toi đã không kịp để làm á bà, nếu toi rảnh thì phần này sẽ được cập nhập thêm nhé:)))  </div></section>
+<section id="letter"><h1>💌 Nhắn nhắn</h1><div class="card">Ummm cái này tuy hơi xáu xáu nma t đã bào con chat gpt mấy tuần rồi đấy phải sửa đi sửa lại khéo gần trăm lần lận nên sài tạm đi ha:))) Chốt lại là cảm ơn Minh Huyền đã xuất hiện trong 3 năm thanh xuân của mình. Mong rằng cả hai sẽ đỗ vô trường đại học mong muốn. Mong là sau này chúng mình sẽ vẫn còn thân với nhau. Oke chúc Minh Huyền tuổi 18 rực rỡ nhó!!! Mãi iuu💖 </div></section>
 
 <footer>✨ Chúng mình yêu thương ✨</footer>
 </div>
@@ -531,21 +400,6 @@ setTimeout(()=>{
   if(hb) hb.style.display="none";
 }, 7000); // hiện 7 giây
 </script>
-<script>
-function openLightbox(card){
-  const img = card.querySelector("img");
-  const cap = card.querySelector(".caption").innerText;
-
-  document.getElementById("lightboxImg").src = img.src;
-  document.getElementById("lightboxCap").innerText = cap;
-  document.getElementById("lightbox").classList.add("active");
-}
-
-function closeLightbox(){
-  document.getElementById("lightbox").classList.remove("active");
-}
-</script>
-
 
 </body>
 </html>
