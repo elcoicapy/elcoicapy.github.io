@@ -294,6 +294,46 @@ body.night .hb-text{
   position:relative;
   z-index:2;
 }
+/* ===== FLOATING ICONS / BUBBLES ===== */
+.floating-layer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:5; /* dưới chữ, trên nền */
+  overflow:hidden;
+}
+
+.floating-item{
+  position:absolute;
+  font-size:22px;
+  opacity:.35;
+  animation: floatMove linear infinite;
+  filter: blur(.3px);
+}
+
+/* DAY */
+.floating-item.day{
+  color:#ff9ecf;
+}
+
+/* NIGHT */
+body.night .floating-item{
+  color:#c8a7ff;
+  opacity:.45;
+}
+
+/* BAY LƯỢN */
+@keyframes floatMove{
+  0%{
+    transform: translate(var(--x-start), var(--y-start)) scale(.8);
+    opacity:0;
+  }
+  10%{opacity:.4}
+  100%{
+    transform: translate(var(--x-end), var(--y-end)) scale(1.3);
+    opacity:0;
+  }
+}
 
 </style>
 </head>
@@ -307,7 +347,8 @@ body.night .hb-text{
     <div class="hb-text hb-name">Nguyễn Minh Huyền</div>
   </div>
 </div>
-   
+ <div class="floating-layer" id="floatingLayer"></div>
+  
 <div class="home-btn" onclick="goHome()">ElcoiCapy</div>
 <div class="menu-btn" onclick="toggleMenu()">☰</div>
 <div class="menu-btn night" onclick="toggleNight()">🌙</div>
@@ -399,6 +440,39 @@ setTimeout(()=>{
   const hb = document.getElementById("hbOverlay");
   if(hb) hb.style.display="none";
 }, 7000); // hiện 7 giây
+</script>
+<script>
+const floatingLayer = document.getElementById("floatingLayer");
+
+const icons = ["💗","✨","🫧","🌸","🐰","⭐","💫"];
+
+for(let i=0;i<24;i++){
+  const el = document.createElement("span");
+  el.className = "floating-item day";
+  el.innerText = icons[Math.floor(Math.random()*icons.length)];
+
+  // bắt đầu từ chỗ khuất
+  const startX = Math.random() > 0.5 ? "-10vw" : "110vw";
+  const startY = Math.random()*100 + "vh";
+
+  const endX = Math.random()*100 + "vw";
+  const endY = Math.random() > 0.5 ? "-20vh" : "120vh";
+
+  el.style.setProperty("--x-start", startX);
+  el.style.setProperty("--y-start", startY);
+  el.style.setProperty("--x-end", endX);
+  el.style.setProperty("--y-end", endY);
+
+  el.style.animationDuration = 12 + Math.random()*10 + "s";
+  el.style.animationDelay = Math.random()*10 + "s";
+
+  floatingLayer.appendChild(el);
+}
+
+/* đổi màu theo night */
+function toggleNight(){
+  document.body.classList.toggle("night");
+}
 </script>
 
 </body>
