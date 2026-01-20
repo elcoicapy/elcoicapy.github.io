@@ -281,12 +281,20 @@ body.night .hb-text{
   from{transform:scale(.6);opacity:0}
   to{transform:scale(1);opacity:1}
 }
+/* CONFETTI LUÔN Ở SAU CHỮ */
 .confetti{
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:9998;
+  z-index:0; /* 👈 HẠ XUỐNG THẤP */
 }
+
+/* CHỮ NẰM TRÊN PHÁO */
+.hb-wrapper{
+  position:relative;
+  z-index:2;
+}
+
 
 </style>
 </head>
@@ -294,10 +302,10 @@ body.night .hb-text{
 <body>
   <!-- HAPPY BIRTHDAY OVERLAY -->
 <div class="hb-overlay" id="hbOverlay">
+    <div class="confetti"></div>
   <div class="hb-wrapper">
   <div class="hb-text hb-title">Happy Birthday 🎂</div>
     <div class="hb-text hb-name">Nguyễn Minh Huyền</div>
-      <div class="confetti"></div>
   </div>
 </div>
    
@@ -378,8 +386,6 @@ for(let i=0;i<40;i++){
   c.style.setProperty("--x-end", endX);
   c.style.setProperty("--y-end", endY);
 
-  c.style.left = 0;
-  c.style.top = 0;
 
   c.style.background =
     ["#ff5c8a","#ff9ecf","#ffc1dd"][Math.floor(Math.random()*3)];
